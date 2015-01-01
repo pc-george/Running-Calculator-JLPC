@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
     
     <title>Running Calculator JLPC</title>
     <link rel="shortcut icon" href="/favicon/apple-touch-icon-57x57.png" />
@@ -56,8 +56,7 @@
     <script type="text/javascript" src="./js/jquery.alerts.js"></script>  
     <script type="text/javascript" src="./js/jquery.ui.draggable.js"></script>
 
-    
-    
+    <script type="text/javascript" src="./js/modernizr.custom.js"></script>
     
 </head>
 <body>
@@ -170,8 +169,8 @@
                                 <div class="col-xs-65 col-sm-25 sin-padding-izq padding">
                                     <select name="unidad" id="unidad" class="form-control" 
                                         title="Seleccione la unidad de medida.">
-                                        <option value="mt" selected>Metros</option>
-                                        <option value="km">Kilometros</option>
+                                        <option value="mt">Metros</option>
+                                        <option value="km" selected>Kilometros</option>
                                         <option value="mi">Millas</option>
                                     </select>
                                 </div>
@@ -183,7 +182,7 @@
                                 <div class="col-xs-65 col-sm-25 sin-padding-izq padding">
                                     <input type="number" id="distancia" name="distancia" 
                                         step="any" placeholder="0" min="0" required="required"
-                                        title="Ingrese la distancia recorrida." value="400" 
+                                        title="Ingrese la distancia recorrida." 
                                         class="numero_mediano form-control" />
                                 </div>
                             </div>
@@ -207,7 +206,7 @@
                                     </div>
                                     <div class="col-xs-100 col-md-40 sin-padding">
                                         <input type="number" name="min" id="min"
-                                            placeholder="00" max="59" min="0" maxlength="2" value="1"
+                                            placeholder="00" max="59" min="0" maxlength="2" 
                                             oninput="maxLengthCheck(this)"
                                             class="numero_corto form-control" />
                                     </div>
@@ -219,7 +218,7 @@
                                     </div>
                                     <div class="col-xs-100 col-md-40 sin-padding">
                                         <input type="number" name="sec" id="sec" placeholder="00"
-                                            maxlength="5" max="59" min="0" step="any" value="20"
+                                            maxlength="5" max="59" min="0" step="any" 
                                             oninput="maxLengthCheck(this)"
                                             class="numero_corto form-control" />
                                     </div>

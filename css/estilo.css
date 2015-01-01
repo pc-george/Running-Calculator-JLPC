@@ -428,8 +428,6 @@ h2 {
 	text-decoration: underline;
 }
 
-
-
 .nav-justified {
   width: 100%;
 }
@@ -501,9 +499,22 @@ footer {
 }
 
 .btn {
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+.btn-primary {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
+.btn-success {
+	margin-top: 5px;
+	margin-bottom: 20px;
+} 
+.btn-warning {
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+
 .btn_margin15y {
 	margin-top: 15px;
 	margin-bottom: 45px;

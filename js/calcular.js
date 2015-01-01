@@ -234,7 +234,7 @@ window.addEventListener("online", function() {
 // Evento offline
 window.addEventListener("offline", function() {
     // Evento que detecta cuando perdemos la conexión
-    alert("You're now offline. If you update your status, it will be sent when you go back online");
+    //alert("You're now offline. If you update your status, it will be sent when you go back online");
     saveStatusLocally(false);
 }, true);
 
@@ -346,15 +346,12 @@ function resultP2MasDetallado() {
 
     //Se mueve cursor hasta los botones de guardar y limpiar.
     $('html,body').animate({
-        scrollTop: $("#btn_guardar_limpiar").offset().top
-    }, 1000);
+        scrollTop: $("#resultados_p2").offset().top
+    }, 500);
 }
 
 // #3_rp1
 function resultP1MenosDetallado() {
-    
-    // Ocultamos los resultados de la parte 2, para dejar solo la parte 1
-    $('#resultados_p2').hide();
 
     // Link para ver mas resultados.
     var origen = $('#plantilla_btn_resultados').html();
@@ -362,8 +359,12 @@ function resultP1MenosDetallado() {
     $('#btn_resultados').html( plantilla(array_btn_mas_resultados) );
 
     $('html,body').animate({
-        scrollTop: $("#btn_guardar_limpiar").offset().top
-    }, 1000);
+        //scrollTop: $("#btn_guardar_limpiar").offset().top
+        scrollTop: $("#btn_calcular").offset().top
+    }, 300);
+
+    // Ocultamos los resultados de la parte 2, para dejar solo la parte 1
+    $('#resultados_p2').hide();
 }
 
 //#1
@@ -490,7 +491,7 @@ function mostrarResultados(unidad, ritmo_km, kph, mps, ritmo_mi, mph, pista, rit
         });
         $('html,body').animate({
             scrollTop: $("#error").offset().top
-        }, 1000);
+        }, 500);
 
         //jAlert(error.msj_error, 'Error');
         
@@ -499,8 +500,9 @@ function mostrarResultados(unidad, ritmo_km, kph, mps, ritmo_mi, mph, pista, rit
         $("#tabla_resultados").show();
     
         $('html,body').animate({
-            scrollTop: $("#btn_guardar_limpiar").offset().top
-        }, 1000);
+            //scrollTop: $("#btn_guardar_limpiar").offset().top
+            scrollTop: $("#btn_calcular").offset().top
+        }, 500);
 
         // Mostramos los resultados principales
         var source   = $("#plantilla-resultados").html();
@@ -679,7 +681,7 @@ function Calcular() {
                 });
                 $('html,body').animate({
                     scrollTop: $("#error").offset().top
-                }, 1000);
+                }, 500);
                 //jAlert(error.msj_error, 'Error');
             } 
         } else {
@@ -698,7 +700,7 @@ function Calcular() {
             });
             $('html,body').animate({
                 scrollTop: $("#error").offset().top
-            }, 1000);
+            }, 500);
             //jAlert(error.msj_error, 'Error');
         }
     } //fin distancia
@@ -718,7 +720,7 @@ function Calcular() {
         });
         $('html,body').animate({
             scrollTop: $("#error").offset().top
-        }, 1000);
+        }, 500);
         //jAlert(error.msj_error, 'Error');
     }
 }
@@ -735,7 +737,7 @@ function Guardar() {
         });
         $('html,body').animate({
             scrollTop: $("#save_ok").offset().top
-        }, 1000);
+        }, 500);
         jAlert('Datos almacenados exitosamente.', 'Operación Exitosa');
 
     } else {
@@ -745,8 +747,8 @@ function Guardar() {
         });
         $('html,body').animate({
             scrollTop: $("#save_error").offset().top
-        }, 1000);
-        jAlert('Los datos NO fueron almacenados.', 'Error');
+        }, 500);
+        //jAlert('Los datos NO fueron almacenados.', 'Error');
     }
 }
 
@@ -776,14 +778,14 @@ function OpenTaffyDB() {
 }
 function RemoveTaffyDB() {
 
-    jConfirm("Todos los registros guardados en el dispositivo se borraran. \n¿Estas seguro que deseas continuar con la eliminacion de la base de datos?", "Advertencia!!!", function(r) {  
+    jConfirm("Si continua todos los registros guardados en el dispositivo se borraran. \n¿Esta de acuerdo en proseguir con la eliminación de la base de datos?", "Advertencia!!!", function(r) {  
         if(r) {
             localStorage.removeItem('taffy_db');
             db = null;
             VerDB();
-            jAlert("Se ha 'eliminado' la Base de datos y con ella todos los registros guardados anteriormente", "Operación exitosa");
+            //jAlert("Se ha 'eliminado' la Base de datos y con ella todos los registros guardados anteriormente", "Operación exitosa");
         } else {
-            jAlert("Se ha 'cancelado' la operación de eliminación y conservado todos los registros.", "Operación Cancelada");
+            jAlert("Se ha 'cancelado' la operación y conservado todos los registros.", "Operación Cancelada");
             VerDB();
         }
     });
@@ -871,7 +873,7 @@ function VerDB() {
 if('localStorage' in window && window['localStorage'] !== null) {
     //alert('Genial, tenemos un navegador decente que soporta LocalStorage');
 } else { 
-    alert('Como seguimos utilizando un navegador viejo, Santa Claus no nos traerá nada esta Navidad'); 
+    alert("Advertencia: Este navegador es antiguo, NO posee soporte completo a Html5/CSS3 y esto podría generar problemas."); 
 }
 
 // Existe localStorage?

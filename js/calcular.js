@@ -41,6 +41,14 @@ window.addEventListener("orientationchange", function() {
     AlturaMenu();
 }, false);
 
+function getAnio() {
+    var d = new Date()
+    var anio_actual = d.getFullYear();
+    if (anio_actual < 2015) {
+        anio_actual = 2015;
+    }
+    return anio_actual;
+}
 function AlturaMenu() {
     var maxHeight = 0;
     var heights = $(".altoSpan").map(function() {
@@ -97,6 +105,7 @@ var resultados_p1;
 var resultados_p2;
 
 var fecha;
+var evento;
 var unidad_medida_input;
 var distancia_input;
 var distancia_km;
@@ -122,7 +131,7 @@ var condicion_error;
 
 // Botones para mostras más o menos detalles de los resultados.
 var array_btn_mas_resultados = {
-    titulo : 'Ver m&aacute;s resultados en otras unidades',
+    titulo : 'M&aacute;s resultados en otras unidades',
     funcion : 'resultP2MasDetallado()'
 }
 var array_btn_menos_resultados = {
@@ -141,6 +150,7 @@ var info_extra2 = "Verifique que todos los campos esten llenos.";
 function Inicializar1() {
     // Inicialización de variables
     fecha = new String("");
+    evento = new String("");
     unidad_medida_input = new String("");
     distancia_input = 0;
     distancia_km = 0;
@@ -453,8 +463,17 @@ function mostrarResultados(unidad, ritmo_km, kph, mps, ritmo_mi, mph, pista, rit
             $('#btn_resultados').html( plantilla(array_btn_mas_resultados) );
 
             var array_botones = {
+                etiqueta_guardar: "Guardar",
                 funcion_guardar : "Guardar();",
-                funcion_limpiar : "Limpiar();"
+                icono_guardar: "./img/32/save-32.png",
+                //icono_guardar: "./img/32/floppy_disk_save-32.png",
+                btn_guardar: "btn-success",
+                etiqueta_limpiar: "Limpiar",
+                funcion_limpiar : "Limpiar();",
+                //icono_limpiar: "./img/32/1417013741_remove-sign-32.png",
+                icono_limpiar: "./img/32/1420174804_clear_left.png",
+                
+                btn_limpiar: "btn-warning"
             }
 
             var origen = $('#plantilla_btn_guardar_limpiar').html();
@@ -601,7 +620,7 @@ function Calcular() {
     if(distancia_input > 0) {
 
         // Obtenemos y almacenamos los valores ingresados
-        fecha = $("#fecha").val();
+        //fecha = $("#fecha").val();
         unidad_medida_input = $("#unidad").val().toLowerCase();
         horas_input = getNum( parseFloat($("#hrs").val()) );
         minutos_input = getNum( parseFloat($("#min").val()) );
@@ -615,81 +634,62 @@ function Calcular() {
         //console.debug("Horas: " + (horas_input * 60) + " (min).   Minutos: " + minutos_input + "   Segundos: " + (segundos_input / 60).toFixed(2) + " (min).");
         //console.debug("Tiempo en minutos: "+tiempo_min);
         
-        if (fecha != "") {
-            if (tiempo_min > 0) {
+    
+        if (tiempo_min > 0) {
 
-                if ((unidad_medida_input.localeCompare("km")) == 0) { // Returns 0 if the two strings are equal
-                    distancia_km = distancia_input;
-                    distancia_mt = distancia_km * razon_1km_mts;
-                    distancia_mi = distancia_km * razon_1km_mi;
-                } else if ((unidad_medida_input.localeCompare("mi")) == 0) {
-                    distancia_mi = distancia_input;
-                    distancia_km = distancia_mi / razon_1km_mi;
-                    distancia_mt = distancia_km * razon_1km_mts;
-                } else if ((unidad_medida_input.localeCompare("mt")) == 0) {
-                    distancia_mt = distancia_input;
-                    distancia_km = distancia_mt / razon_1km_mts;
-                    distancia_mi = distancia_km * razon_1km_mi;
-                } else {
-                    console.error("else: error en unidad_medida: "+unidad_medida_input);
-                }
-                
-                //Redondear distancia
-                var precision = 5; //Para mayor exactitud, aumentar el numero precision.
-                distancia_mi = distancia_mi.toFixed(precision); 
-                distancia_km = distancia_km.toFixed(precision);
-                distancia_mt = distancia_mt.toFixed(precision);
-                
-                // Inicialización de variables
-                Inicializar2();
+            if ((unidad_medida_input.localeCompare("km")) == 0) { // Returns 0 if the two strings are equal
+                distancia_km = distancia_input;
+                distancia_mt = distancia_km * razon_1km_mts;
+                distancia_mi = distancia_km * razon_1km_mi;
+            } else if ((unidad_medida_input.localeCompare("mi")) == 0) {
+                distancia_mi = distancia_input;
+                distancia_km = distancia_mi / razon_1km_mi;
+                distancia_mt = distancia_km * razon_1km_mts;
+            } else if ((unidad_medida_input.localeCompare("mt")) == 0) {
+                distancia_mt = distancia_input;
+                distancia_km = distancia_mt / razon_1km_mts;
+                distancia_mi = distancia_km * razon_1km_mi;
+            } else {
+                console.error("else: error en unidad_medida: "+unidad_medida_input);
+            }
+            
+            //Redondear distancia
+            var precision = 5; //Para mayor exactitud, aumentar el numero precision.
+            distancia_mi = distancia_mi.toFixed(precision); 
+            distancia_km = distancia_km.toFixed(precision);
+            distancia_mt = distancia_mt.toFixed(precision);
+            
+            // Inicialización de variables
+            Inicializar2();
 
-                // Calcular ritmo
-                resultKm = getRitmo("Km", distancia_km, tiempo_min);
-                result_ritmo_x_km = resultKm[0];
-                result_kph = resultKm[1];
-                result_mps = resultKm[2];
-                result_ritmo_pista = resultKm[3];
-                result_ritmo_min_double = resultKm[4];
-                
-                resultMi = getRitmo("Mi", distancia_mi, tiempo_min);
-                result_ritmo_x_milla = resultMi[0];
-                result_mph = resultMi[1];
+            // Calcular ritmo
+            resultKm = getRitmo("Km", distancia_km, tiempo_min);
+            result_ritmo_x_km = resultKm[0];
+            result_kph = resultKm[1];
+            result_mps = resultKm[2];
+            result_ritmo_pista = resultKm[3];
+            result_ritmo_min_double = resultKm[4];
+            
+            resultMi = getRitmo("Mi", distancia_mi, tiempo_min);
+            result_ritmo_x_milla = resultMi[0];
+            result_mph = resultMi[1];
 
-                mostrarResultados(unidad_medida_input, result_ritmo_x_km, result_kph, result_mps, result_ritmo_x_milla, result_mph, result_ritmo_pista, result_ritmo_min_double);
+            mostrarResultados(unidad_medida_input, result_ritmo_x_km, result_kph, result_mps, result_ritmo_x_milla, result_mph, result_ritmo_pista, result_ritmo_min_double);
 
-                $("input").change(function() {
-                    LimpiarResultados();
-                });
-                $("select").change(function() {
-                    LimpiarResultados();
-                });
+            $("input").change(function() {
+                LimpiarResultados();
+            });
+            $("select").change(function() {
+                LimpiarResultados();
+            });
 
-            } else {//fin tiempo min
-                
-                var origen = $('#plantilla_error').html();
-                var plantilla = Handlebars.compile( origen );
-                var error;
-                error = {
-                    msj_error : "El tiempo ingresado NO es valido",
-                    info_extra : info_extra2
-                };
-                $('#error').html(plantilla(error));
-
-                $('#error').show();
-                $("#error").fadeTo(7500, 500).slideUp(500, function(){
-                    $("#alert-danger").alert('close');
-                });
-                $('html,body').animate({
-                    scrollTop: $("#error").offset().top
-                }, 500);
-                //jAlert(error.msj_error, 'Error');
-            } 
-        } else {
+        } else {//fin tiempo min
+            
             var origen = $('#plantilla_error').html();
             var plantilla = Handlebars.compile( origen );
             var error;
             error = {
-                msj_error : "La fecha ingresada NO es valido",
+                msj_error : "El tiempo ingresado NO es valido",
                 info_extra : info_extra2
             };
             $('#error').html(plantilla(error));
@@ -726,41 +726,87 @@ function Calcular() {
 }
 
 function Guardar() {
-    if ( (distancia_input > 0) && (condicion_error == false) ) {
-        Insertar(fecha, unidad_medida_input, distancia_input, hrs_min_seg_input, tiempo_min, result_ritmo_min_double, result_ritmo_x_km, result_ritmo_x_milla, result_ritmo_pista);
-        Inicializar1();
-        Inicializar2();
 
-        $('#save_ok').show();
-        $("#save_ok").fadeTo(4000, 500).slideUp(500, function(){
-            $('#save_ok').hide();
-        });
-        $('html,body').animate({
-            scrollTop: $("#save_ok").offset().top
-        }, 500);
-        jAlert('Datos almacenados exitosamente.', 'Operación Exitosa');
+    fecha = $("#fecha").val();
+    evento = $("#evento").val();
 
+    if (fecha != "") {
+
+        if ( (distancia_input > 0) && (condicion_error == false) ) {
+            Insertar(fecha, unidad_medida_input, distancia_input, hrs_min_seg_input, tiempo_min, result_ritmo_min_double, result_ritmo_x_km, result_ritmo_x_milla, result_ritmo_pista, evento);
+            Inicializar1();
+            Inicializar2();
+
+            $('#save_ok').show();
+            $("#save_ok").fadeTo(4000, 500).slideUp(500, function(){
+                $('#save_ok').hide();
+            });
+            $('html,body').animate({
+                scrollTop: $("#save_ok").offset().top
+            }, 500);
+            //jAlert('Datos almacenados exitosamente.', 'Operación Exitosa');
+
+
+            var origen = $('#plantilla_btn_resultados').html();
+            var plantilla = Handlebars.compile( origen );
+            $("#tabla_resultados").addClass("tb");
+
+            $('#btn_resultados').html( plantilla(array_btn_mas_resultados) );
+
+            var array_botones = {
+                etiqueta_guardar: "Ver Registro",
+                funcion_guardar : "VerDB();",
+                icono_guardar: "./img/32/1417013300_list-alt-32.png",
+                btn_guardar: "btn-info",
+                etiqueta_limpiar: "Nuevo",
+                funcion_limpiar : "Limpiar();",
+                icono_limpiar: "./img/32/1420175486_edit-32.png",
+                btn_limpiar: "btn-warning"
+            }
+
+            var origen = $('#plantilla_btn_guardar_limpiar').html();
+            var plantilla = Handlebars.compile( origen );
+            $('#btn_guardar_limpiar').html( plantilla(array_botones) );
+        } else {
+            $('#save_error').show();
+            $("#save_error").fadeTo(2000, 500).slideUp(500, function(){
+                $("#alert-danger").alert('close');
+            });
+            $('html,body').animate({
+                scrollTop: $("#save_error").offset().top
+            }, 500);
+            //jAlert('Los datos NO fueron almacenados.', 'Error');
+        }
     } else {
-        $('#save_error').show();
-        $("#save_error").fadeTo(2000, 500).slideUp(500, function(){
+        var origen = $('#plantilla_error').html();
+        var plantilla = Handlebars.compile( origen );
+        var error;
+        error = {
+            msj_error : "La fecha ingresada NO es valido",
+            info_extra : info_extra2
+        };
+        $('#error').html(plantilla(error));
+
+        $('#error').show();
+        $("#error").fadeTo(7500, 500).slideUp(500, function(){
             $("#alert-danger").alert('close');
         });
         $('html,body').animate({
-            scrollTop: $("#save_error").offset().top
+            scrollTop: $("#error").offset().top
         }, 500);
-        //jAlert('Los datos NO fueron almacenados.', 'Error');
-    }
+        //jAlert(error.msj_error, 'Error');
+    }        
 }
 
 $('.alert .close').on('click', function(e) {
     $(this).parent().hide();
 });
 
-function Insertar(param_fecha, param_medida, param_distancia, param_hhmmss, param_tiempo, param_ritmo, param_ritmo_km, param_ritmo_mi, param_ritmo_pista) {
+function Insertar(param_fecha, param_medida, param_distancia, param_hhmmss, param_tiempo, param_ritmo, param_ritmo_km, param_ritmo_mi, param_ritmo_pista, param_evento) {
     //AbrirBD();
     
     OpenTaffyDB();
-    db.insert({fecha:param_fecha, medida:param_medida, distancia:param_distancia, hhmmss:param_hhmmss, tiempo:param_tiempo, ritmo:param_ritmo, ritmo_km:param_ritmo_km, ritmo_mi:param_ritmo_mi, ritmo_pista:param_ritmo_pista });
+    db.insert({fecha:param_fecha, medida:param_medida, distancia:param_distancia, hhmmss:param_hhmmss, tiempo:param_tiempo, ritmo:param_ritmo, ritmo_km:param_ritmo_km, ritmo_mi:param_ritmo_mi, ritmo_pista:param_ritmo_pista, evento:param_evento });
     
     //GuardarBD();
 }
@@ -785,7 +831,7 @@ function RemoveTaffyDB() {
             VerDB();
             //jAlert("Se ha 'eliminado' la Base de datos y con ella todos los registros guardados anteriormente", "Operación exitosa");
         } else {
-            jAlert("Se ha 'cancelado' la operación y conservado todos los registros.", "Operación Cancelada");
+            //jAlert("Se ha 'cancelado' la operación y conservado todos los registros.", "Operación Cancelada");
             VerDB();
         }
     });
@@ -854,6 +900,7 @@ function VerDB() {
             ritmo_km: record["ritmo_km"],
             ritmo_mi: record["ritmo_mi"],
             ritmo_pista: record["ritmo_pista"],
+            evento: record["evento"],
             id: record["___id"]
             
         };

@@ -238,7 +238,7 @@ h1 {
 	font-size: 18px;
 	margin-left: 15px;
 	margin-right: 15px;
-	padding-top: 40px;
+	padding-top: 50px;
 }
 h2 {
 	font-size: 18px;
@@ -494,8 +494,8 @@ footer {
 	border-radius: 10px 10px 10px 10px;
 	background: #e2e2e2;
 	text-align: center;
-	font-size: 12px;
-	font-weight: bold;
+	/*font-size: 12px;*/
+	/*font-weight: bold;*/
 }
 
 .btn {
@@ -506,13 +506,13 @@ footer {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-.btn-success {
+.btn-success .btn-warning .btn-info {
 	margin-top: 5px;
 	margin-bottom: 20px;
-} 
-.btn-warning {
-	margin-top: 5px;
-	margin-bottom: 20px;
+}
+.text-sombra {
+	/*text-shadow: 5px 5px 5px #aaa;*/
+	text-shadow: 0.1em 0.1em 0.2em black;
 }
 
 .btn_margin15y {
@@ -531,8 +531,8 @@ footer {
 	padding-right: 0;
 }
 .tt {
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 20px;
+	margin-bottom: 25px;
 }
 .espacio, #errores {
 	margin-bottom: 40px;
@@ -609,6 +609,7 @@ a.text_del {
 	font-weight:bold;
 	text-decoration: none;
 	padding-bottom: 10px;
+	padding-top: 5px;
 }
 
 .padding_top5 {
@@ -632,3 +633,7 @@ li#nav-menu {
 	height: 100%;
 }
 */
+
+.dropdown-menu {
+
+}

@@ -1,7 +1,7 @@
 Running-Calculator-JLPC
 =======================
 
-Descripción
+Descripción:
 Aplicación para realizar cálculos relacionados con la velocidad, ritmo, distancia y tiempo de una carrera.
 
 Caracteristicas:
@@ -30,7 +30,7 @@ Nota:
 * Hecho por un corredor para los corredores.
 
 Autor:
-  Jorge Luis Pérez Canto.
-  Guatemala, C.A.
-  
+	Jorge Luis Pérez Canto.
+	Guatemala, C.A.
+	
   Copyright © 2015. Todos los derechos reservados.

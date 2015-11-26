@@ -24,10 +24,6 @@ Aplicación para realizar cálculos relacionados con la velocidad, ritmo, distan
 * Diseño adaptativo a todos los tamaños y resoluciones de pantalla.
 * Soporte para los dispositivos móviles más recientes con Sistema Operativo Android 4.x
 
-# URL WebApp (Demo): #
-# http://calculadora.esy.es/ #
-
-
 Hecho por un corredor para los corredores.
 
 #Autor:#

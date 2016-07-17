@@ -6,24 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
     
     <title>Running Calculator JLPC</title>
-    <link rel="shortcut icon" href="/favicon/apple-touch-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-touch-icon-76x76.png">
-    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="./favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-touch-icon-76x76.png">
+    <link rel="icon" type="image/png" href="./favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="./favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="./favicon/favicon-32x32.png" sizes="32x32">
     <meta name="msapplication-TileColor" content="#2d89ef">
     
     <!-- CSS Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="./css/rejillas-jlpc.css" rel="stylesheet"> -->
+    <!-- <link href="./css/bootstrap.css" rel="stylesheet"> -->
     
     <!-- CSS Estilos personalizados -->
     <link rel="stylesheet" type="text/css" href="./css/estilo.css" media="screen" />
     
     <!-- CSS jAlert -->
-	<link href="css/jquery.alerts.css" rel="stylesheet" type="text/css" />
+	<link href="./css/jquery.alerts.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,11 +35,15 @@
     <![endif]-->
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="./js/jquery-1.11.2.js"></script>
+    
+    
+    <script src="./js/jquery-1.11.1.min.js"></script>
+    <!-- <script src="./js/jquery-1.11.2.js"></script> -->
     <script src="./js/jquery-migrate-1.2.1.js"></script>
 
     <!-- Bootstrap. Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.js"></script>
+    
+    <script src="./js/bootstrap.min.js"></script>
     
     <!-- Live Validation -->
     <script src="./js/livevalidation_jlpc.js"></script>
@@ -46,11 +52,8 @@
     <script src="./js/taffy.js"></script>
     
     <!-- JS Handlebars -->
-    <script src="js/handlebars-v2.0.0.js"></script>
+    <script src="./js/handlebars-v2.0.0.js"></script>
     <script src="./js/helpers.js"></script>
-    
-    <!-- JS Personal -->
-    <script src="./js/calcular.js"></script>
 
     <!-- JS jAlert -->
     <script type="text/javascript" src="./js/jquery.alerts.js"></script>  
@@ -58,13 +61,15 @@
 
     <script type="text/javascript" src="./js/modernizr.custom.js"></script>
     
+    <!-- JS Personal -->
+    <script src="./js/calcular.js"></script>
+    
 </head>
 <body>
     <header>
     	<hgroup>
-        	<h1 class="text-center">Running Calculator JLPC</h2>
-        	<!-- <h2 class="text-center">Calcular velocidad de carreras</h1> -->
-        	<h2 class="text-center">Calculadora de Carreras</h1>
+            <h1 class="text-center">Running Calculator JLPC</h1>
+            <h2 class="text-center">Calculadora de Carreras</h2>
         </hgroup>
     </header>
 
@@ -72,25 +77,25 @@
         <div class="container-fluid"><div class="row text-center"><div 
             class="col-xs-90  col-xs-offset-5  col-xs-margen-dcha-5 
                     col-sm-70    col-sm-offset-15   col-sm-margen-dcha-15  
-                    col-md-60    col-md-offset-20   col-md-margen-dcha-20" id="fijo">
+					col-md-64    col-md-offset-18   col-md-margen-dcha-18 columna-x
+					col-lg-50    col-lg-offset-25   col-lg-margen-dcha-25" id="fijo">
 
             <div id="menu_nav">
-                <ul class="nav nav-tabs nav-justified tb">
+                <ul class="nav nav-tabs nav-justified tb menu_nav">
                     <li id="nav-menu" class="active">
-                        <!-- javascript:location.reload() -->
-                        <a class="a-tabs alto100" onclick="Home();"> 
+                        <a class="a-tabs alto100" onclick="home();"> 
                             <img src="./img/32/Calc-32.png" alt="Inicio" height="24" width="24" />
-                            <span class="altoSpan"> Calculadora</span>
+                            <span class="altoSpan"> Inicio</span>
                         </a>
                     </li>
                     <li id="nav-ver">
-                        <a class="a-tabs alto100" onclick="VerDB();">
+                        <a class="a-tabs alto100" onclick="verDB();">
                             <img src="./img/32/1417013658_list-32.png" alt="Registros" height="24" width="24" />
-                            <span class="altoSpan"> Historial</span>
+                            <span class="altoSpan"> Registros</span>
                         </a>
                     </li>
                     <li id="nav-acerca">
-                        <a class="a-tabs alto100" href="#" onclick="AcercaDe();"> 
+                        <a class="a-tabs alto100" href="#" onclick="acercaDe();"> 
                             <img src="./img/32/1417013512_info-sign-32.png" alt="AcercaDe" height="24" width="24" />
                             <span class="altoSpan"> Acerca de...</span>
                         </a>
@@ -105,27 +110,25 @@
                      Opciones de Men&uacute; <span class="caret"></span>
                 </button>
 
-                <!-- <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> -->
                 <ul class="dropdown-menu no_transparente" role="menu" aria-labelledby="dropdownMenu1">
                     <li role="presentation">
-                        <a role="menuitem" tabindex="-1" onclick="Home();">
-                        <!-- href="javascript:location.reload()" --> 
+                        <a role="menuitem" tabindex="-1" onclick="home();">
                             <img src="./img/32/Calc-32.png" alt="Inicio" height="32" width="32" />
-                            <span> Calculadora</span>
+                            <span> Inicio</span>
                         </a>
                     </li>
                     <li role="presentation" class="divider"></li>
                     
                     <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="#" onclick="VerDB();">
+                        <a role="menuitem" tabindex="-1" href="#" onclick="verDB();">
                             <img src="./img/32/1417013658_list-32.png" alt="Registros" height="32" width="32" />
-                            <span> Historial</span>
+                            <span> Registros</span>
                         </a>
                     </li>
                     <li role="presentation" class="divider"></li>
                     
                     <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="#" onclick="AcercaDe();">
+                        <a role="menuitem" tabindex="-1" href="#" onclick="acercaDe();">
                             <img src="./img/32/1417013512_info-sign-32.png" alt="AcercaDe" height="32" width="32" />
                             <span> Acerca de...</span>
                         </a>
@@ -139,14 +142,15 @@
         <div class="container-fluid"><div class="row text-center"><div 
             class="col-xs-90  col-xs-offset-5  col-xs-margen-dcha-5 
                     col-sm-70    col-sm-offset-15   col-sm-margen-dcha-15  
-                    col-md-60    col-md-offset-20   col-md-margen-dcha-20 columna-x">
+                    col-md-64    col-md-offset-18   col-md-margen-dcha-18 columna-x
+					col-lg-50    col-lg-offset-25   col-lg-margen-dcha-25">
             
             <section id="entrada_de_datos">
                 <div class="row"><div class="col-xs-100">
                     
                     <div class="tt">
                     	<h4><u>Instrucciones:</u></h4>
-                    	<h5>A continuaci&oacute;n ingresa los datos requeridos (distancia y tiempo), luego presiona el bot&oacute;n 'Calcular' para obtener el ritmo y velocidad de carrera.</h4>
+                        <h5>A continuaci&oacute;n ingresa los datos requeridos (distancia y tiempo), luego presiona el bot&oacute;n 'Calcular' para obtener el ritmo y velocidad de carrera.</h5>
                     </div>
 
                     <div class="row padding15x"><div class="col-xs-100 tb padding15xy">
@@ -163,54 +167,54 @@
                                     <label class="control-label" for="evento" >Evento:</label>
                                 </div>
                                 <div class="col-xs-65 col-md-35 text-left">
-                                    <input type="text" id="evento" name="evento" placeholder="Nombre del evento o carrera"/>
+                                    <input type="text" id="evento" name="evento" placeholder="Nombre de la carrera"/>
                                 </div>
 							</div>
-							<HR>
+							<HR></HR>
 
                             <div class="row text-left">
-                                <div class="col-xs-35 col-md-25">
+                                <div class="col-xs-35 col-md-20 col-lg-18">
                                     <label for="unidad">Unidades:</label>
                                 </div>
-                                <div class="col-xs-65 col-md-25 sin-padding-izq padding">
+                                <div class="col-xs-65 col-md-30 col-lg-32 sin-padding-izq padding">
                                     <select name="unidad" id="unidad" required="required" class="form-control" 
                                         title="Seleccione la unidad de medida.">
-                                        <option value="mt">Metros</option>
-                                        <option value="km" selected>Kilometros</option>
+                                        <option value="m" selected>Metros</option>
+                                        <option value="km">Kilometros</option>
                                         <option value="mi">Millas</option>
                                     </select>
                                 </div>
                                 <div class="clearfix visible-xxs visible-ss"></div>
 
-                                <div class="col-xs-35 col-md-25">
+                                <div class="col-xs-35 col-md-20 col-lg-18">
                                     <label for="distancia">Distancia:</label>
                                 </div>
-                                <div class="col-xs-65 col-md-25 sin-padding-izq padding">
+                                <div class="col-xs-65 col-md-30 col-lg-32 sin-padding-izq padding">
                                     <input type="number" id="distancia" name="distancia" 
                                         step="any" placeholder="0" min="0" required="required"
                                         title="Ingrese la distancia recorrida." 
-                                        class="numero_mediano form-control" />
+                                        class="numero_mediano form-control" autofocus />
                                 </div>
                             </div>
-                            <HR>
+                            <HR></HR>
 
                             <div class="row text-center">
                                 
                                 <div class="col-xs-33"><div class="row">
-                                    <div class="col-xs-100 col-md-60 text-l">
+                                    <div class="col-xs-100 col-md-55 col-lg-50 text-l">
                                         <label for="hrs">Horas</label>
                                     </div>
-                                    <div class="col-xs-100 col-md-40 sin-padding">
+                                    <div class="col-xs-100 col-md-45 col-lg-50 sin-padding">
                                         <input type="number" name="hrs" id="hrs" placeholder="00" min="0" 
                                             class="numero_corto form-control" />
                                     </div>
                                 </div></div>
 
                                 <div class="col-xs-33"><div class="row">
-                                    <div class="col-xs-100 col-md-60">
+                                    <div class="col-xs-100 col-md-55 col-lg-50">
                                         <label for="min">Minutos</label>
                                     </div>
-                                    <div class="col-xs-100 col-md-40 sin-padding">
+                                    <div class="col-xs-100 col-md-45 col-lg-50 sin-padding">
                                         <input type="number" name="min" id="min"
                                             placeholder="00" max="59" min="0" maxlength="2" 
                                             oninput="maxLengthCheck(this)"
@@ -219,10 +223,10 @@
                                 </div></div>
 
                                 <div class="col-xs-33"><div class="row">
-                                    <div class="col-xs-100 col-md-60">
+                                    <div class="col-xs-100 col-md-55 col-lg-50">
                                         <label for="sec">Segundos</label>
                                     </div>
-                                    <div class="col-xs-100 col-md-40 sin-padding">
+                                    <div class="col-xs-100 col-md-45 col-lg-50 sin-padding">
                                         <input type="number" name="sec" id="sec" placeholder="00"
                                             maxlength="5" max="59" min="0" step="any" 
                                             oninput="maxLengthCheck(this)"
@@ -232,19 +236,16 @@
                             </div>
                         </form>
                     </div></div>
-                    <!-- <br /> -->
 
                     <div class="row"><div class="col-xs-100">
-                        <!-- btn-primary btn-info -->
                         <button type="button" id="btn_calcular" 
-                            class="btn btn-default btn-primary btn-block" onclick="Calcular();">
+                            class="btn btn-default btn-primary btn-block" onclick="calcular();">
                             <img class="img-btn" alt="Calcular"
                                 src="./img/32/1417013755_calculator-32.png" />
                                 <span> Calcular</span>
                         </button>
                     </div></div>
 
-                    <!-- <br /> -->
                 </div></div>
             </section>
 
@@ -259,9 +260,8 @@
                                 <label for="{{nombre}}">{{{etiqueta}}}</label>
                             </div>
                             <div class="col-xs-100 col-sm-50 text-center">
-                                <input type="text" name = "{{nombre}}" id = "{{nombre}}" 
-                                    readonly="readonly" class = "result" value="{{velocidad}}">
-                                </input> {{{unidades_de_medida}}}
+                                <input type="text" name = "{{nombre}}" id = "{{nombre}}" readonly="readonly" class = "result" value="{{velocidad}}">
+                                {{{unidades_de_medida}}}
                             </div>
                         </div>
                     {{/each}}
@@ -349,7 +349,7 @@
                                 <p><strong>Abreviaturas:</strong></p>
                             </div>
                             <div class="col-xs-100 col-sm-30">
-                                <li>mt = Metros</li>
+                                <li>m  = Metros</li>
                             </div>
                             <div class="col-xs-100 col-sm-30">
                                 <li>mi = Millas</li>
@@ -361,44 +361,59 @@
                             <div class="col-xs-100">
                             </div>
 
-                            <h5 class="ttHistorial col-xs-100"><strong>Historial de pr&aacute;cticas guardadas:</strong></h5>
+                            <h5 class="ttHistorial col-xs-100"><strong>Registros almacenados:</strong></h5>
 
                         {{#if elementos}}
                             {{#each elementos}}
-                                <tr>
-                                <div class="row">
+                                <tr class="reg" style="cursor:cell" onclick="reg('{{id}}');">
+                                <div class="row" id="{{id}}">
+																		
                                     <td>
-                                        <div class="col-xs-100 col-sm-45 col-md-35 text-left padding_top5">
+										<span class="right">
+											<a title="Eliminar registro individual" href="#" class="btn btn-xs btn_sin_margin btn_sin_paddingXY btn-danger-x text_del" onclick="removerRegistro('{{id}}');">
+												<img src="./img/20/1417013834_remove-sign-20.png" alt="Remover" height="16" width="16" />
+											</a>
+										</span>
+                                        {{#is evento "!==" ""}}
+										
+										<div class="col-xs-100 col-sm-100 col-md-30 text-left padding_top5">
                                             <img src="./favicon/favicon-16x16.png" alt="Run" height="16" width="16"/>
                                             <span>{{fecha}}</span>
                                         </div>
-                                        {{#is evento "===" ""}}
-                                        {{else}}
-                                        <div class="col-xs-100 col-sm-55 col-md-65 text-left padding_top5">
+										
+										<div class="col-xs-100 col-sm-50 col-md-70 text-left padding_top5">
                                             <span>{{evento}}</span>.
+
+                                        </div>
+										
+										<div class="col-xs-100 col-sm-50 col-md-30 text-left">
+                                            <span>{{distancia}} {{medida}}.  en  {{hhmmss}}</span> 
+                                        </div>
+										<div class="clearfix visible-sm"></div>
+                                        {{else}}
+										
+										<div class="col-xs-100 col-sm-100 col-md-100 text-left padding_top5">
+                                            <img src="./favicon/favicon-16x16.png" alt="Run" height="16" width="16"/>
+                                            <span>{{fecha}}</span>
+											
+                                        </div>
+										
+										<div class="col-xs-100 col-sm-100 col-md-30 text-left">
+                                            <span>{{distancia}} {{medida}}.  en  {{hhmmss}}</span> 
                                         </div>
                                         {{/is}}
-
-                                        <div class="col-xs-100 col-sm-45 col-md-35 text-left">
-                                            <span>{{distancia}} {{medida}} en {{hhmmss}}</span> 
-                                        </div>
-                                        <div class="col-xs-100 col-sm-55 col-md-30 text-left">
+																
+                                        <div class="col-xs-100 col-sm-50 col-md-30 text-left">
                                             {{#is medida "===" "mi"}}
-                                                <span>Ritmo: {{ritmo_mi}}</span>
+                                                <span>Ritmo: {{ritmo_mi}} x Milla</span>
                                             {{else}}
-                                                <span>Ritmo: {{ritmo_km}}</span>
+                                                <span>Ritmo: {{ritmo_km}} x Km</span>
                                             {{/is}}
                                         </div>
-
-                                        <div class="col-xs-100">
-                                            <a href="#eliminar" class="btn btn-xs btn_sin_margin btn_sin_paddingXY btn-danger-x text_del"
-                                                onclick="RemoverRegistro('{{id}}');">
-                                                <img src="./img/20/1417013834_remove-sign-20.png" alt="Remover" height="16" width="16" />
-                                                <span> Eliminar registro individual</span>
-                                            </a>
+										<div class="col-xs-100 col-sm-50 col-md-40 text-left">
+                                            <span>En pista: <b>{{ritmo_pista}}</b> x 400m</span>
                                         </div>
-                                    </button>
-                                    
+										
                                     </td>
                                 </div>
                                 </tr>
@@ -449,25 +464,26 @@
 	                <div id="acerca_de" class="row">
 	        			<div class="col-xs-100 columna-x-x">
 	        				<div id="acercaDe" class="tb padding_acercaDe">
-			            		<p>Running Calculator JLPC, versión 1.0 </p>
+			            		<p>Running Calculator JLPC, versión 1.3 </p>
 			            		<br/>
 			            		<p>Esta app está diseñada para calcular la velocidad de carrera y registrar tus prácticas en el dispositivo para que puedas analizar tus resultados con más detalle.</p>
 			            		<br/>
-			            		<p>Copyright © 
+			            		<p>Copyright © 2014 - 
                                     <span><script type="text/javascript">
                                         document.write(getAnio());
                                     </script></span> 
-                                    Jorge Luis Pérez Canto. </p>
+                                     Jorge Luis Pérez Canto. </p>
 			            		<p>Todos los derechos reservados. </p>
-			            		<br/>
-			            		<p>Revisión 000002 (2015-01-01)</p>
+			            		<br />
+								<p>Ultima actualización: (16/07/2016)</p>
+								<br />
 			            		<p>george.jlpc@gmail.com </p>
 			            	</div>
-			            	<br></br><br></br>
+			            	<br /><br />
 			            </div>
 	            	</div>
 	            </div>
-	            <br></br>
+	            <br />
             </section>
         </div></div></div>
         

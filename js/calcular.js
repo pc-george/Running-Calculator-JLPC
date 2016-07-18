@@ -165,8 +165,6 @@ function Limpiar() {
 
 $(document).ready(function () {
     
-    
-    //console.log("ready!");
     $("#registros").hide();
     $("#acerca").hide();
 
@@ -261,7 +259,6 @@ var distancia_mi;
 var horas_input;
 var minutos_input;
 var segundos_input;
-var tiempo_min;
 var hrs_min_seg_input;
 
 var resultKm;
@@ -269,7 +266,6 @@ var result_ritmo_x_km;
 var result_kph;
 var result_mps;
 var result_ritmo_pista;
-var result_ritmo_min_double;
 var result_ritmo_pista100;
 var resultMi;
 var result_ritmo_x_milla;
@@ -414,6 +410,20 @@ function separarNumeroEnteroDecimal(param_numero) {
 	
     return [result_numero, parte_entera, parte_decimal, decimal];
 }
+
+function separar_hhmmss(param_hhmmss) {
+	var arr = param_hhmmss.toString().split(":");
+	
+	var horas = 0, minutos = 0, segundos = 0;
+	
+	horas = parseInt(arr[0]);
+	minutos = parseInt(arr[1]);
+	segundos = parseInt(arr[2]);
+	
+	return [horas, minutos, segundos];
+}
+
+
 // Función que convierte el tiempo recibido en 'minutos decimales' a 'horas, minutos y segundos'.
 function decimal_a_hhmmss(param_ritmo_double) {
     
@@ -435,11 +445,8 @@ function decimal_a_hhmmss(param_ritmo_double) {
     seg_decimal = tiempo[2];
 
     // Convertimos los decimales a segundos.
-    //segundos = Math.round(seg_decimal * 60);
-	//segundos = (seg_decimal * 60).toFixed(2);
 	segundos = seg_decimal * 60;
-    //str_segundos = obtener2digitosMenoresDe10(segundos);
-
+	
     return [horas, minutos, segundos];
 }
 
@@ -547,7 +554,7 @@ function mostrarResultados(unidad, ritmo_km, kph, mps, ritmo_mi, mph, pista, rit
                 registros_p2.push(array_ritmo_km);
                 registros_p2.push(array_kph);
                 registros_p2.push(array_mps);
-            } else if ((unidad.localeCompare("m")) === 0) {
+            } else if ((unidad.localeCompare("m") === 0) || (unidad.localeCompare("mt") === 0)) {
 				registros_p1.push(array_pista100);
                 registros_p1.push(array_pista);
                 registros_p1.push(array_ritmo_km);
@@ -615,8 +622,6 @@ function mostrarResultados(unidad, ritmo_km, kph, mps, ritmo_mi, mph, pista, rit
         $('html,body').animate({
             scrollTop: $("#error").offset().top
         }, 500);
-
-        //jAlert(error.msj_error, 'Error');
         
     } else {
         $("#resultados").show();
@@ -666,43 +671,39 @@ function getRitmo(param_unidad_medida, param_distancia, param_tiempo_min) {
     ritmo_hhmmss = []; // array
 
     // Calculo del 'Ritmo' en minutos en base a la formula: tiempo/distancia
-    ritmo_min_double = (param_tiempo_min / param_distancia).toFixed(5); //para mayor exactitud no redondear.
-    //console.debug("Ritmo_min_double (minutos/distancia): " + ritmo_min_double);
+    ritmo_min_double = (param_tiempo_min / param_distancia); //para mayor exactitud no redondear.
     
     // Conversión del Ritmo en 'minutos' a hh:minutos:segundos
     ritmo_hhmmss = decimal_a_hhmmss(ritmo_min_double);
-    //console.debug("Ritmo hh,mm,ss: "+ritmo_hhmmss);
     ritmo_horas = ritmo_hhmmss[0];
     ritmo_minutos = ritmo_hhmmss[1];
     ritmo_str_segundos = obtener2digitosMenoresDe10(ritmo_hhmmss[2]);
     
     // Concatenación de las partes del ritmo (hh:mm':seg'')
     if (ritmo_horas > 0) {
-        ritmo_x_unidad = ritmo_horas + " : " + ritmo_minutos + "\' : " + ritmo_str_segundos + "\'\'";
-        //ritmo_x_unidad = ritmo_horas + ":"+ ritmo_minutos + ":" + ritmo_str_segundos;
+        ritmo_x_unidad = obtener2digitosMenoresDe10(ritmo_horas) + " : " + obtener2digitosMenoresDe10(ritmo_minutos) + "\' : " + obtener2digitosMenoresDe10(ritmo_str_segundos) + "\'\'";
     } else {
-        ritmo_x_unidad = ritmo_minutos + "\' : " + ritmo_str_segundos + "\'\'";
-        //ritmo_x_unidad = ritmo_minutos + ":" + ritmo_str_segundos;
+        ritmo_x_unidad = obtener2digitosMenoresDe10(ritmo_minutos) + "\' : " + obtener2digitosMenoresDe10(ritmo_str_segundos) + "\'\'";
     }
 
     // Calculo de la Velocidad en la 'unidad de medida' por Horas, Ej: Kms/hrs (kph) ó  Mi/hrs (mph).
-    velocidad_unidad_x_hora = ((param_distancia * 60) / param_tiempo_min).toFixed(2);
+    velocidad_unidad_x_hora = parseFloat(((param_distancia * 60) / param_tiempo_min).toFixed(2));
     
     // Calcular ritmo en 'pista atletica' y velocidad en metros por segundos si la unidad de medida es 'KM'
     if ((param_unidad_medida.toLowerCase().localeCompare("km")) === 0) {
         
         // Calculo de velocidad en metros por segundos
-        velocidad_metros_x_segundos = ((velocidad_unidad_x_hora * 1000) / 3600).toFixed(2);
+        velocidad_metros_x_segundos = parseFloat(((velocidad_unidad_x_hora * 1000) / 3600).toFixed(2));
 
         // Calculo de ritmo en circuito de pista atletica
-        ritmo_pista_double = ((ritmo_min_double * 400) / 1000).toFixed(5);
-		ritmo_pista100_double = ((ritmo_min_double * 100) / 1000).toFixed(5);
+        ritmo_pista_double = parseFloat(((ritmo_min_double * 400) / 1000).toFixed(5));
+		ritmo_pista100_double = parseFloat(((ritmo_min_double * 100) / 1000).toFixed(5));
         
         // Conversion de ritmo decimal a hh:minutos:segundos
         ritmoPista = decimal_a_hhmmss(ritmo_pista_double);
 		ritmoPista100 = decimal_a_hhmmss(ritmo_pista100_double);
 		
-		ritmoPista100[2] = (ritmoPista100[2]).toFixed(2)
+		ritmoPista100[2] = parseFloat((ritmoPista100[2]).toFixed(2));
 		var rp100_seg = separarNumeroEnteroDecimal(ritmoPista100[2]);
 		ritmoPista100[2] = rp100_seg[1];
 		ritmoPista100[3] = rp100_seg[3];
@@ -711,24 +712,26 @@ function getRitmo(param_unidad_medida, param_distancia, param_tiempo_min) {
 		//tiempo = separarNumeroEnteroDecimal(minutos);
 		
         if (ritmoPista[0] > 0) { // Si 'horas' mayor a cero...
-            str_ritmoPista = ritmoPista[0] + " : " + ritmoPista[1] + "\' : " + obtener2digitosMenoresDe10(ritmoPista[2]) + "\'\'";
+            str_ritmoPista = obtener2digitosMenoresDe10(ritmoPista[0]) + " : " + obtener2digitosMenoresDe10(ritmoPista[1]) + "\' : " + obtener2digitosMenoresDe10(ritmoPista[2]) + "\'\'";
         } else { // Si no hay 'horas', solo 'minutos' y 'segundos'...
-            str_ritmoPista = ritmoPista[1] + "\' : " + obtener2digitosMenoresDe10(ritmoPista[2]) + "\'\'";
+            str_ritmoPista = obtener2digitosMenoresDe10(ritmoPista[1]) + "\' : " + obtener2digitosMenoresDe10(ritmoPista[2]) + "\'\'";
         }
 		
 		if (ritmoPista100[0] > 0) { // Si 'horas' mayor a 'cero'...
-            str_ritmoPista100 = ritmoPista100[0] + " : " + ritmoPista100[1] + "\' : " + ritmoPista100[2] + "\'\'." + ritmoPista100[3] + "cs";
+            str_ritmoPista100 = obtener2digitosMenoresDe10(ritmoPista100[0]) + " : " + obtener2digitosMenoresDe10(ritmoPista100[1]) + "\' : " + obtener2digitosMenoresDe10(ritmoPista100[2]) + "\'\'." + obtener2digitosMenoresDe10(ritmoPista100[3]) + "cs";
         } else { // Si no hay 'horas', solo 'minutos' y 'segundo's...
 			
 			if (ritmoPista100[1] > 0) { // Si 'minutos' mayor a 'cero'...
-            	str_ritmoPista100 = ritmoPista100[1] + "\' : " + ritmoPista100[2] + "\'\'." + ritmoPista100[3] + "cs";
+            	str_ritmoPista100 = obtener2digitosMenoresDe10(ritmoPista100[1]) + "\' : " + obtener2digitosMenoresDe10(ritmoPista100[2]) + "\'\'." + obtener2digitosMenoresDe10(ritmoPista100[3]) + "cs";
 			} else { // Si no hay 'minutos' solo 'segundos'...
-				str_ritmoPista100 = ritmoPista100[2] + "\'\'." + ritmoPista100[3] + "cs";
+				str_ritmoPista100 = obtener2digitosMenoresDe10(ritmoPista100[2]) + "\'\'." + obtener2digitosMenoresDe10(ritmoPista100[3]) + "cs";
 			}
 			
         }
     }
-
+	
+	ritmo_min_double = parseFloat((ritmo_min_double).toFixed(5));
+	
     return [ritmo_x_unidad, velocidad_unidad_x_hora, velocidad_metros_x_segundos, str_ritmoPista, ritmo_min_double, str_ritmoPista100];
 }
 
@@ -749,21 +752,16 @@ function calcular() {
     if (distancia_input > 0) {
 
         // Obtenemos y almacenamos los valores ingresados
-        //fecha = $("#fecha").val();
         unidad_medida_input = $("#unidad").val().toLowerCase();
         horas_input = getNum(parseFloat($("#hrs").val()));
         minutos_input = getNum(parseFloat($("#min").val()));
         segundos_input = getNum(parseFloat($("#sec").val()));
         
-        hrs_min_seg_input = horas_input + ":" + minutos_input + ":" + segundos_input;
-        //hrs_min_seg_input = horas_input + " : " + minutos_input + " : " + segundos_input;
+        hrs_min_seg_input = obtener2digitosMenoresDe10(horas_input) + ":" + obtener2digitosMenoresDe10(minutos_input) + ":" + obtener2digitosMenoresDe10(segundos_input);
 
         // Conversión del tiempo ingresado a 'minutos'
         tiempo_min = (horas_input * 60) + (minutos_input) + (segundos_input / 60);
-        //console.debug("Horas: " + (horas_input * 60) + " (min).   Minutos: " + minutos_input + "   Segundos: " + (segundos_input / 60).toFixed(2) + " (min).");
-        //console.debug("Tiempo en minutos: "+tiempo_min);
         
-    
         if (tiempo_min > 0) {
 
             if ((unidad_medida_input.localeCompare("km")) === 0) { // Returns 0 if the two strings are equal
@@ -774,7 +772,7 @@ function calcular() {
                 distancia_mi = distancia_input;
                 distancia_km = distancia_mi / razon_1km_mi;
                 distancia_mt = distancia_km * razon_1km_mts;
-            } else if ((unidad_medida_input.localeCompare("m")) === 0) {
+            } else if ((unidad_medida_input.localeCompare("m") === 0) || (unidad_medida_input.localeCompare("mt") === 0)) {
                 distancia_mt = distancia_input;
                 distancia_km = distancia_mt / razon_1km_mts;
                 distancia_mi = distancia_km * razon_1km_mi;
@@ -784,9 +782,9 @@ function calcular() {
             
             //Redondear distancia
             precision = 5; //Para mayor exactitud, aumentar el numero precision.
-            distancia_mi = distancia_mi.toFixed(precision);
-            distancia_km = distancia_km.toFixed(precision);
-            distancia_mt = distancia_mt.toFixed(precision);
+            distancia_mi = parseFloat(distancia_mi.toFixed(precision));
+            distancia_km = parseFloat(distancia_km.toFixed(precision));
+            distancia_mt = parseFloat(distancia_mt.toFixed(precision));
             
             // Inicialización de variables
             inicializar2();
@@ -803,7 +801,9 @@ function calcular() {
             resultMi = getRitmo("Mi", distancia_mi, tiempo_min);
             result_ritmo_x_milla = resultMi[0];
             result_mph = resultMi[1];
-
+			
+			tiempo_min = parseFloat((tiempo_min).toFixed(5));
+			
             mostrarResultados(unidad_medida_input, result_ritmo_x_km, result_kph, result_mps, result_ritmo_x_milla, result_mph, result_ritmo_pista, result_ritmo_min_double, result_ritmo_pista100);
 
             $("input").change(function () {
@@ -812,7 +812,6 @@ function calcular() {
             $("select").change(function () {
                 limpiarResultados();
             });
-
         } else {//fin tiempo min
             
             origen = $('#plantilla_error').html();
@@ -830,7 +829,6 @@ function calcular() {
             $('html,body').animate({
                 scrollTop: $("#error").offset().top
             }, 500);
-            //jAlert(error.msj_error, 'Error');
         }
     } else {
         origen = $('#plantilla_error').html();
@@ -848,7 +846,6 @@ function calcular() {
         $('html,body').animate({
             scrollTop: $("#error").offset().top
         }, 500);
-        //jAlert(error.msj_error, 'Error');
     }
 }
 
@@ -887,25 +884,70 @@ function verDB() {
     historial = [];
 
     db().each(function (record, recordnumber) {
-        var array_historial_tmp = {
+        var db_1reg = {
             fecha:  record.fecha,
-            medida: record.unidad,
+            unidad: record.unidad,
             distancia: record.distancia,
             hhmmss: record.hhmmss,
 			horas: record.tiempo.horas,
 			minutos: record.tiempo.minutos,
 			segundos: record.tiempo.segundos,
-			t_min: record.t_min,
+			tot_tiempo_min: record.tot_tiempo_min,
 			ritmo_km_dec: record.ritmo_km_dec,
-			ritmo_km: record.ritmo_km_str,
-            ritmo_mi: record.ritmo_mi_str,
-            ritmo_pista: record.ritmo_pista_str,
-            evento: record.nombre_evento,
+			ritmo_km: record.ritmo_km,
+            ritmo_mi: record.ritmo_mi,
+            ritmo_pista: record.ritmo_pista,
+            nombre_evento: record.nombre_evento,
             id: record["___id"]
         };
-        historial.push(array_historial_tmp);
+		
+		
+		//---------------------------------------------------------------------------
+		
+		// Compatibilidad con versiones anteriores para poder procesar los registros antiguos en la nueva versión
+		
+		if ((db_1reg.ritmo_km_dec == null) || (db_1reg.ritmo_km_dec === undefined)) {
+			if ((db_1reg.nombre_evento == null) || (db_1reg.nombre_evento === undefined)){
+				db_1reg.nombre_evento = db({___id:db_1reg.id}).first().evento;
+				db({___id:db_1reg.id}).update({nombre_evento: db_1reg.nombre_evento});
+			}
+			if ((db_1reg.unidad == null) || (db_1reg.unidad === undefined)){
+				db_1reg.unidad = db({___id:db_1reg.id}).first().medida;
+				if (db_1reg.unidad == "mt") {
+					db_1reg.unidad = "m";
+				}
+				db({___id:db_1reg.id}).update({unidad: db_1reg.unidad});
+			}
+			
+			if ((db_1reg.tot_tiempo_min == null) || (db_1reg.tot_tiempo_min === undefined)){
+				db_1reg.tot_tiempo_min = parseFloat(db({___id:db_1reg.id}).first().tiempo);
+				db_1reg.tot_tiempo_min = parseFloat((db_1reg.tot_tiempo_min).toFixed(5));
+				db({___id:db_1reg.id}).update({tot_tiempo_min: db_1reg.tot_tiempo_min});
+			}
+			if ((db_1reg.ritmo_km_dec == null) || (db_1reg.ritmo_km_dec === undefined)){
+				db_1reg.ritmo_km_dec = parseFloat(db({___id:db_1reg.id}).first().ritmo);
+				db_1reg.ritmo_km_dec = parseFloat((db_1reg.ritmo_km_dec).toFixed(5));
+				db({___id:db_1reg.id}).update({ritmo_km_dec: db_1reg.ritmo_km_dec});
+			}
+			
+			var horas = 0, minutos = 0, segundos = 0;
+			if (db_1reg.hhmmss != "") {
+				var hh_mm_ss = separar_hhmmss(db_1reg.hhmmss);
+				horas = hh_mm_ss[0];
+				minutos = hh_mm_ss[1];
+				segundos = hh_mm_ss[2];
+				db({___id:db_1reg.id}).update({tiempo:{horas: horas, minutos: minutos, segundos: segundos}});
+				
+				db({___id:db_1reg.id}).update({hhmmss: obtener2digitosMenoresDe10(horas) + ":" + obtener2digitosMenoresDe10(minutos) + ":" + obtener2digitosMenoresDe10(segundos)});
+			}
+			
+			db({___id:db_1reg.id}).update({ritmo_pista100m: null});
+		}
+		//----------------------------------------------------------------------------
+		
+        historial.push(db_1reg);
     });
-
+	
     origen = $('#plantilla_tabla_registros').html();
     plantilla = Handlebars.compile(origen);
     histo = { elementos: historial };
@@ -924,7 +966,6 @@ function removeTaffyDB() {
             localStorage.removeItem('taffy_db');
             db = null;
             verDB();
-            //jAlert("Se ha 'eliminado' la Base de datos y con ella todos los registros guardados anteriormente", "Operación exitosa");
         } else {
             //jAlert("Se ha 'cancelado' la operación y conservado todos los registros.", "Operación Cancelada");
             verDB();
@@ -932,12 +973,22 @@ function removeTaffyDB() {
     });
 }
 
-function insertar(param_fecha, param_medida, param_distancia, param_hhmmss, param_tiempo, param_ritmo, param_ritmo_km, param_ritmo_mi, param_ritmo_pista, param_evento) {
-    	
+function insertar(param_fecha, param_medida, param_distancia, param_hhmmss, param_tiempo, param_ritmo, param_ritmo_km, param_ritmo_mi, param_ritmo_pista, result_ritmo_pista100, param_evento) {
+	
+	var horas, minutos, segundos;
+	if (param_hhmmss != "") {
+		var hh_mm_ss = separar_hhmmss(param_hhmmss);
+		horas = hh_mm_ss[0];
+		minutos = hh_mm_ss[1];
+		segundos = hh_mm_ss[2];
+	} else {
+		horas = horas_input;
+		minutos = minutos_input;
+		segundos = segundos_input;
+	}
+		
     openTaffyDB();
-    db.insert({fecha: param_fecha, unidad: param_medida, distancia: param_distancia, hhmmss: param_hhmmss, tiempo:{horas: horas_input, minutos: minutos_input, segundos: segundos_input}, t_min: param_tiempo, ritmo_km_dec: param_ritmo, ritmo_km_str: param_ritmo_km, ritmo_mi_str: param_ritmo_mi, ritmo_pista_str: param_ritmo_pista, nombre_evento: param_evento });
-    
-    //guardarBD();
+    db.insert({fecha: param_fecha, unidad: param_medida, distancia: param_distancia, hhmmss: param_hhmmss, tiempo:{horas: horas, minutos: minutos, segundos: segundos}, tot_tiempo_min: param_tiempo, ritmo_km_dec: param_ritmo, ritmo_km: param_ritmo_km, ritmo_mi: param_ritmo_mi, ritmo_pista: param_ritmo_pista, ritmo_pista100m: result_ritmo_pista100, nombre_evento: param_evento });
 }
 
 function guardar() {
@@ -949,7 +1000,9 @@ function guardar() {
     if (fecha !== "") {
 
         if ((distancia_input > 0) && (condicion_error === false)) {
-            insertar(fecha, unidad_medida_input, distancia_input, hrs_min_seg_input, tiempo_min, result_ritmo_min_double, result_ritmo_x_km, result_ritmo_x_milla, result_ritmo_pista, evento);
+			tiempo_min = parseFloat(tiempo_min);
+			result_ritmo_min_double = parseFloat(result_ritmo_min_double);
+            insertar(fecha, unidad_medida_input, distancia_input, hrs_min_seg_input, tiempo_min, result_ritmo_min_double, result_ritmo_x_km, result_ritmo_x_milla, result_ritmo_pista, result_ritmo_pista100, evento);
             inicializar1();
             inicializar2();
 
@@ -960,9 +1013,7 @@ function guardar() {
             $('html,body').animate({
                 scrollTop: $("#save_ok").offset().top
             }, 500);
-            //jAlert('Datos almacenados exitosamente.', 'Operación Exitosa');
-
-
+			
             origen = $('#plantilla_btn_resultados').html();
             plantilla = Handlebars.compile(origen);
             $("#tabla_resultados").addClass("tb");
@@ -1009,33 +1060,26 @@ function guardar() {
         $('html,body').animate({
             scrollTop: $("#error").offset().top
         }, 500);
-        //jAlert(error.msj_error, 'Error');
     }
 }
 
 function reg(oID) {
-	//id = $('.reg').val();
-	//oID = $(this).attr("id");
 	
 	console.debug("id: " + oID);
 	Limpiar();
 	
-	//var kelly = friends({id:2}).first();
-	
-	var fecha, evento, unidad, distancia, hrs, min, sec;
+	var fecha, nombre_evento, unidad, distancia, hrs, min, sec, tot_tiempo_min, ritmo_km_dec, ritmo_km, ritmo_mi, ritmo_pista, ritmo_pista100m;
 	
 	fecha = db({___id:oID}).first().fecha;
-	evento = db({___id:oID}).first().nombre_evento;
+	nombre_evento = db({___id:oID}).first().nombre_evento;
 	unidad = db({___id:oID}).first().unidad;
 	distancia = db({___id:oID}).first().distancia;
 	hrs = db({___id:oID}).first().tiempo.horas;
 	min = db({___id:oID}).first().tiempo.minutos
 	sec = db({___id:oID}).first().tiempo.segundos;
 	
-	
 	$('#fecha').val(fecha);
-	$('#evento').val(evento);
-	
+	$('#evento').val(nombre_evento);
 	$('#unidad').val(unidad);
 	$('#distancia').val(distancia);
 	$('#hrs').val(hrs);

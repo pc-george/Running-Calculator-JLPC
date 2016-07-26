@@ -34,6 +34,9 @@ function alturaMenu() {
 
 //Declaración de variables globales:
 
+var del_reg = false;
+//var v_width = "auto";
+
 var fecha = "", evento = "", unidad_medida_input = "", distancia_input = 0, distancia_km = 0, distancia_mt = 0, distancia_mi = 0, horas_input = 0, minutos_input = 0, segundos_input = 0, tiempo_min = 0, hrs_min_seg_input = "";
 
 var resultKm = [], result_ritmo_x_km = "", result_kph = 0, result_mps = 0, result_ritmo_pista = "", result_ritmo_min_double = 0.0, result_ritmo_pista100 = "", resultMi = [], result_ritmo_x_milla = "", result_mph = 0;
@@ -140,6 +143,7 @@ function Limpiar() {
     
     $('#form').each(function () {
         this.reset();
+		console.log("form each reset");
     });
 
     $('#fecha').val(new Date().toDateInputValue());
@@ -153,13 +157,20 @@ function Limpiar() {
     limpiarResultados();
 
     $("#resultados").hide();
+	$('#resultados_p1').hide();
 
     inicializar1();
     inicializar2();
     inicializar3();
 
-    $('#fecha').focus();
-    $("input").off("change");
+    //$('#fecha').focus();
+	//$("input").off("change");
+    
+	$("input#distancia").off("change");
+	$("input#hrs").off("change");
+	$("input#min").off("change");
+	$("input#sec").off("change");
+	
     $("select").off("change");
 }
 
@@ -170,7 +181,13 @@ $(document).ready(function () {
 
     $('#fecha').val(new Date().toDateInputValue());
 
-    $("input").off("change");
+    //$("input").off("change");
+	
+	$("input#distancia").off("change");
+	$("input#hrs").off("change");
+	$("input#min").off("change");
+	$("input#sec").off("change");
+
     $("select").off("change");
 
     //Cambio de tamaño de la ventana
@@ -183,6 +200,12 @@ $(document).ready(function () {
     );
     alturaMenu();
 });
+
+Date.prototype.toDateInputValue = function () {
+	var local = new Date(this);
+	local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+	return local.toJSON().slice(0, 10);
+};
 
 window.addEventListener("orientationchange", function () {
     
@@ -209,13 +232,15 @@ window.onload = function () {
     // Validación de campos
     var fecha_lv, distancia_lv, hrs_lv, min_lv, sec_lv;
     
-    fecha_lv = new LiveValidation('fecha');
-    fecha_lv.add(Validate.Presence);
-
+    //fecha_lv = new LiveValidation('fecha');
+    //fecha_lv.add(Validate.Presence);
+	
+	/*
     distancia_lv = new LiveValidation('distancia');
     distancia_lv.add(Validate.Presence);
     distancia_lv.add(Validate.Numericality, {minimum: 0});
-    
+    */
+	
     hrs_lv = new LiveValidation('hrs');
     hrs_lv.add(Validate.Numericality, {minimum: 0, onlyInteger: true});
     
@@ -227,12 +252,7 @@ window.onload = function () {
 };
 
 
-Date.prototype.toDateInputValue = function () {
-    
-    var local = new Date(this);
-    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-    return local.toJSON().slice(0, 10);
-};
+
 
 
 var db = null;
@@ -408,6 +428,17 @@ function separarNumeroEnteroDecimal(param_numero) {
 	var entero = arr[0];
 	var decimal = arr[1];
 	
+	if ((decimal === undefined) || (decimal == null)) {
+		decimal = parte_decimal;
+	}
+	
+	/*
+	console.log("result_numero: " + result_numero);
+	console.log("parte_entera: " + parte_entera);
+	console.log("parte_decimal: " + parte_decimal);
+	console.log("decimal: " + decimal);
+	*/
+	
     return [result_numero, parte_entera, parte_decimal, decimal];
 }
 
@@ -575,7 +606,7 @@ function mostrarResultados(unidad, ritmo_km, kph, mps, ritmo_mi, mph, pista, rit
 
             array_botones = {
                 etiqueta_guardar: "Guardar",
-                funcion_guardar : "guardar();",
+                funcion_guardar : "guardar1();",
                 icono_guardar: "./img/32/save-32.png",
                 //icono_guardar: "./img/32/floppy_disk_save-32.png",
                 btn_guardar: "btn-success",
@@ -708,6 +739,7 @@ function getRitmo(param_unidad_medida, param_distancia, param_tiempo_min) {
 		ritmoPista100[2] = rp100_seg[1];
 		ritmoPista100[3] = rp100_seg[3];
 		
+		//console.log(rp100_seg[3]);
 			
 		//tiempo = separarNumeroEnteroDecimal(minutos);
 		
@@ -717,17 +749,18 @@ function getRitmo(param_unidad_medida, param_distancia, param_tiempo_min) {
             str_ritmoPista = obtener2digitosMenoresDe10(ritmoPista[1]) + "\' : " + obtener2digitosMenoresDe10(ritmoPista[2]) + "\'\'";
         }
 		
+		var cs = 0;
+		cs = obtener2digitosMenoresDe10(ritmoPista100[3]);
+		
 		if (ritmoPista100[0] > 0) { // Si 'horas' mayor a 'cero'...
-            str_ritmoPista100 = obtener2digitosMenoresDe10(ritmoPista100[0]) + " : " + obtener2digitosMenoresDe10(ritmoPista100[1]) + "\' : " + obtener2digitosMenoresDe10(ritmoPista100[2]) + "\'\'." + obtener2digitosMenoresDe10(ritmoPista100[3]) + "cs";
-        } else { // Si no hay 'horas', solo 'minutos' y 'segundo's...
-			
+			str_ritmoPista100 = obtener2digitosMenoresDe10(ritmoPista100[0]) + " : " + obtener2digitosMenoresDe10(ritmoPista100[1]) + "\' : " + obtener2digitosMenoresDe10(ritmoPista100[2]) + "\'\' . " + cs + " cs";
+		} else { // Si no hay 'horas', solo 'minutos' y 'segundo's...
 			if (ritmoPista100[1] > 0) { // Si 'minutos' mayor a 'cero'...
-            	str_ritmoPista100 = obtener2digitosMenoresDe10(ritmoPista100[1]) + "\' : " + obtener2digitosMenoresDe10(ritmoPista100[2]) + "\'\'." + obtener2digitosMenoresDe10(ritmoPista100[3]) + "cs";
+				str_ritmoPista100 = obtener2digitosMenoresDe10(ritmoPista100[1]) + "\' : " + obtener2digitosMenoresDe10(ritmoPista100[2]) + "\'\' . " + cs + " cs";
 			} else { // Si no hay 'minutos' solo 'segundos'...
-				str_ritmoPista100 = obtener2digitosMenoresDe10(ritmoPista100[2]) + "\'\'." + obtener2digitosMenoresDe10(ritmoPista100[3]) + "cs";
+				str_ritmoPista100 = obtener2digitosMenoresDe10(ritmoPista100[2]) + "\'\' . " + cs + " cs";
 			}
-			
-        }
+		}
     }
 	
 	ritmo_min_double = parseFloat((ritmo_min_double).toFixed(5));
@@ -805,13 +838,41 @@ function calcular() {
 			tiempo_min = parseFloat((tiempo_min).toFixed(5));
 			
             mostrarResultados(unidad_medida_input, result_ritmo_x_km, result_kph, result_mps, result_ritmo_x_milla, result_mph, result_ritmo_pista, result_ritmo_min_double, result_ritmo_pista100);
-
-            $("input").change(function () {
+			
+			
+            //$("input").change(function () {
+			
+			$("input#distancia").change(function () {
                 limpiarResultados();
             });
+			$("input#hrs").change(function () {
+                limpiarResultados();
+            });
+			$("input#min").change(function () {
+                limpiarResultados();
+            });
+			$("input#sec").change(function () {
+                limpiarResultados();
+            });
+			
+			$("input#distancia").focus(function () {
+                limpiarResultados();
+            });
+			$("input#hrs").focus(function () {
+                limpiarResultados();
+            });
+			$("input#min").focus(function () {
+                limpiarResultados();
+            });
+			$("input#sec").focus(function () {
+                limpiarResultados();
+            });
+			
+			
             $("select").change(function () {
                 limpiarResultados();
             });
+			
         } else {//fin tiempo min
             
             origen = $('#plantilla_error').html();
@@ -956,6 +1017,7 @@ function verDB() {
     origen = $('#plantilla_btn_remover_bd').html();
     plantilla = Handlebars.compile(origen);
     $('#btn_remover_bd').html(plantilla(array_btn_remover_bd));
+	
 }
 
 function removeTaffyDB() {
@@ -968,6 +1030,20 @@ function removeTaffyDB() {
             verDB();
         } else {
             //jAlert("Se ha 'cancelado' la operación y conservado todos los registros.", "Operación Cancelada");
+            verDB();
+        }
+    });
+}
+
+function guardarEvento() {
+    
+
+    jConfirm("Si continua todos los registros guardados en el dispositivo se borraran. \n¿Esta de acuerdo en proseguir con la eliminación de la base de datos?", "Advertencia!!!", function (r) {
+        if (r) {
+            //accion guardar
+            verDB();
+        } else {
+            jAlert("Se ha 'cancelado' la operación, datos NO guardados.", "Operación Cancelada");
             verDB();
         }
     });
@@ -991,21 +1067,22 @@ function insertar(param_fecha, param_medida, param_distancia, param_hhmmss, para
     db.insert({fecha: param_fecha, unidad: param_medida, distancia: param_distancia, hhmmss: param_hhmmss, tiempo:{horas: horas, minutos: minutos, segundos: segundos}, tot_tiempo_min: param_tiempo, ritmo_km_dec: param_ritmo, ritmo_km: param_ritmo_km, ritmo_mi: param_ritmo_mi, ritmo_pista: param_ritmo_pista, ritmo_pista100m: result_ritmo_pista100, nombre_evento: param_evento });
 }
 
+function guardar1() {
+	$('div#guardar_evento').dialog('open');
+}
 function guardar() {
-    
     var origen, plantilla, error, array_botones;
     fecha = $("#fecha").val();
     evento = $("#evento").val();
-
+	
     if (fecha !== "") {
-
         if ((distancia_input > 0) && (condicion_error === false)) {
 			tiempo_min = parseFloat(tiempo_min);
 			result_ritmo_min_double = parseFloat(result_ritmo_min_double);
             insertar(fecha, unidad_medida_input, distancia_input, hrs_min_seg_input, tiempo_min, result_ritmo_min_double, result_ritmo_x_km, result_ritmo_x_milla, result_ritmo_pista, result_ritmo_pista100, evento);
             inicializar1();
             inicializar2();
-
+			
             $('#save_ok').show();
             $("#save_ok").fadeTo(4000, 500).slideUp(500, function () {
                 $('#save_ok').hide();
@@ -1017,9 +1094,9 @@ function guardar() {
             origen = $('#plantilla_btn_resultados').html();
             plantilla = Handlebars.compile(origen);
             $("#tabla_resultados").addClass("tb");
-
+			
             $('#btn_resultados').html(plantilla(array_btn_mas_resultados));
-
+			
             array_botones = {
                 etiqueta_guardar: "Ver Registro",
                 funcion_guardar : "verDB();",
@@ -1030,7 +1107,7 @@ function guardar() {
                 icono_limpiar: "./img/32/1420175486_edit-32.png",
                 btn_limpiar: "btn-warning"
             };
-
+			
             origen = $('#plantilla_btn_guardar_limpiar').html();
             plantilla = Handlebars.compile(origen);
             $('#btn_guardar_limpiar').html(plantilla(array_botones));
@@ -1061,6 +1138,7 @@ function guardar() {
             scrollTop: $("#error").offset().top
         }, 500);
     }
+	$("div#guardar_evento").dialog('close');
 }
 
 function reg(oID) {
@@ -1070,25 +1148,27 @@ function reg(oID) {
 	
 	var fecha, nombre_evento, unidad, distancia, hrs, min, sec, tot_tiempo_min, ritmo_km_dec, ritmo_km, ritmo_mi, ritmo_pista, ritmo_pista100m;
 	
-	fecha = db({___id:oID}).first().fecha;
-	nombre_evento = db({___id:oID}).first().nombre_evento;
-	unidad = db({___id:oID}).first().unidad;
-	distancia = db({___id:oID}).first().distancia;
-	hrs = db({___id:oID}).first().tiempo.horas;
-	min = db({___id:oID}).first().tiempo.minutos
-	sec = db({___id:oID}).first().tiempo.segundos;
-	
-	$('#fecha').val(fecha);
-	$('#evento').val(nombre_evento);
-	$('#unidad').val(unidad);
-	$('#distancia').val(distancia);
-	$('#hrs').val(hrs);
-	$('#min').val(min);
-	$('#sec').val(sec);
-	home()
-	calcular();
-	
-	
+	if (del_reg == false) {
+		fecha = db({___id:oID}).first().fecha;
+		nombre_evento = db({___id:oID}).first().nombre_evento;
+		unidad = db({___id:oID}).first().unidad;
+		distancia = db({___id:oID}).first().distancia;
+		hrs = db({___id:oID}).first().tiempo.horas;
+		min = db({___id:oID}).first().tiempo.minutos;
+		sec = db({___id:oID}).first().tiempo.segundos;
+		
+		$('#fecha').val(fecha);
+		$('#evento').val(nombre_evento);
+		$('#unidad').val(unidad);
+		$('#distancia').val(distancia);
+		$('#hrs').val(hrs);
+		$('#min').val(min);
+		$('#sec').val(sec);
+		
+		home();
+		calcular();
+	}
+	del_reg = false;
 }
 
 $('.alert .close').on('click', function (e) {
@@ -1130,6 +1210,7 @@ function home() {
 function removerRegistro(param_id) {
     console.log("remove(param_id: " + param_id + ")");
     db({___id:param_id}).remove();
+	del_reg = true;
     verDB();
 }
 
@@ -1187,4 +1268,13 @@ function eliminarBD() {
 }
 
 
+
+
+// on window resize run function
+$(window).resize(function () {
+	$("div#guardar_evento").dialog( "option", "position", { my: "center", at: "center", of: window } );
+});
+
+
 $('#distancia').focus();
+

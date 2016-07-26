@@ -423,6 +423,117 @@ h2 {
 .padding15xy {
 	padding: 15px;
 }
+
+.padding-interior {
+	padding: 15px;
+}
+
+.padding_interior2 {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.padding_top {
+	padding-top: 15px;
+}
+.padding_bottom {
+	padding-bottom: 15px;
+}
+
+.ui-dialog {
+	margin: 25px;
+	/*margin-left: 20px;
+	margin-top: 20px;*/
+}
+
+
+@media (min-width: 481px) {
+	
+	.ui-dialog {
+		margin: 75px;
+	}
+	
+	.padding-interior {
+		padding-left: 25px;
+		padding-right: 25px;
+		padding-bottom: 15px;
+		padding-top: 15px;
+	}
+	
+	.padding_interior2 {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	.padding_interior2 {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	.padding_top {
+		padding-top: 15px;
+	}
+	.padding_bottom {
+		padding-bottom: 15px;
+	}
+}
+
+@media (min-width: 768px) {
+	
+	.ui-dialog {
+		margin: 100px;
+	}
+
+	.padding-interior {
+		padding-left: 30px;
+		padding-right: 30px;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+	
+	.padding_interior2 {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.padding_interior2 {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.padding_top {
+		padding-top: 20px;
+	}
+	.padding_bottom {
+		padding-bottom: 20px;
+	}
+}
+
+@media (min-width: 1024px) {
+	.padding-interior {
+		padding-left: 40px;
+		padding-right: 40px;
+		padding-bottom: 25px;
+		padding-top: 25px;
+	}
+	
+	.padding_interior2 {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	.padding_interior2 {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	.padding_top {
+		padding-top: 25px;
+	}
+	.padding_bottom {
+		padding-bottom: 25px;
+	}
+}
+
+#guardar_evento {
+	padding: 25px;
+	/*margin: 25px;*/
+}
+
 .azul {
 	color: blue;
 	text-decoration: underline;

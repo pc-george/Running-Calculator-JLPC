@@ -30,4 +30,4 @@ Hecho por un corredor para los corredores.
 Jorge Luis Pérez Canto.
 Guatemala, C.A.
 
-Copyright © 2014-2016. Todos los derechos reservados.
+Copyright © 2015. Todos los derechos reservados.

@@ -21,9 +21,6 @@
     <!-- <link href="./css/rejillas-jlpc.css" rel="stylesheet"> -->
     <!-- <link href="./css/bootstrap.css" rel="stylesheet"> -->
     
-    <!-- CSS Estilos personalizados -->
-    <link rel="stylesheet" type="text/css" href="./css/estilo.css" media="screen" />
-    
     <!-- CSS jAlert -->
 	<link href="./css/jquery.alerts.css" rel="stylesheet" type="text/css" />
 
@@ -37,7 +34,8 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     
     
-    <script src="./js/jquery-1.11.1.min.js"></script>
+	<script src="./js/jquery.js"></script>
+    <!-- <script src="./js/jquery-1.11.1.min.js"></script> -->
     <!-- <script src="./js/jquery-1.11.2.js"></script> -->
     <script src="./js/jquery-migrate-1.2.1.js"></script>
 
@@ -61,9 +59,17 @@
 
     <script type="text/javascript" src="./js/modernizr.custom.js"></script>
     
-    <!-- JS Personal -->
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" media="screen" />
+	<script type="text/javascript" src="./js/jquery-ui.js"></script>
+	<!-- <script type="text/javascript" src="./js/jquery.dialogOptions.js"></script> -->
+	
+	
+	<!-- CSS Estilos personalizados -->
+    <link rel="stylesheet" type="text/css" href="./css/estilo.css" media="screen" />
+	
+	<!-- JS Personal -->
     <script src="./js/calcular.js"></script>
-    
+	
 </head>
 <body>
     <header>
@@ -78,7 +84,7 @@
             class="col-xs-90  col-xs-offset-5  col-xs-margen-dcha-5 
                     col-sm-70    col-sm-offset-15   col-sm-margen-dcha-15  
 					col-md-64    col-md-offset-18   col-md-margen-dcha-18 columna-x
-					col-lg-50    col-lg-offset-25   col-lg-margen-dcha-25" id="fijo">
+					col-lg-46    col-lg-offset-27   col-lg-margen-dcha-27" id="fijo">
 
             <div id="menu_nav">
                 <ul class="nav nav-tabs nav-justified tb menu_nav">
@@ -143,7 +149,7 @@
             class="col-xs-90  col-xs-offset-5  col-xs-margen-dcha-5 
                     col-sm-70    col-sm-offset-15   col-sm-margen-dcha-15  
                     col-md-64    col-md-offset-18   col-md-margen-dcha-18 columna-x
-					col-lg-50    col-lg-offset-25   col-lg-margen-dcha-25">
+					col-lg-46    col-lg-offset-27   col-lg-margen-dcha-27">
             
             <section id="entrada_de_datos">
                 <div class="row"><div class="col-xs-100">
@@ -153,25 +159,9 @@
                         <h5>A continuaci&oacute;n ingresa los datos requeridos (distancia y tiempo), luego presiona el bot&oacute;n 'Calcular' para obtener el ritmo y velocidad de carrera.</h5>
                     </div>
 
-                    <div class="row padding15x"><div class="col-xs-100 tb padding15xy">
+                    <div class="row padding15x"><div class="col-xs-100 tb padding-interior">
                         <form role="form" id="form">
-                                
-                            <div class="row text-left">
-                            	<div class="col-xs-35 col-md-15 text-left">
-                            		<label class="control-label" for="fecha">Fecha:</label>
-								</div>
-								<div class="col-xs-65 col-md-35 text-left">
-									<input type="date" class="datepicker" data-date-format="dd/mm/yyyy" id="fecha" name="fecha" placeholder="dd/mm/yyyy" size="30">
-								</div>
-                                <div class="col-xs-35 col-md-15 text-left">
-                                    <label class="control-label" for="evento" >Evento:</label>
-                                </div>
-                                <div class="col-xs-65 col-md-35 text-left">
-                                    <input type="text" id="evento" name="evento" placeholder="Nombre de la carrera"/>
-                                </div>
-							</div>
-							<HR></HR>
-
+							
                             <div class="row text-left">
                                 <div class="col-xs-35 col-md-20 col-lg-18">
                                     <label for="unidad">Unidades:</label>
@@ -254,7 +244,7 @@
                 <script id="plantilla-resultados" type="text/x-handlebars-template">
                     {{!-- <p class="text-center" id="txtResult"><strong>Resutados</strong></p> --}}
                     {{#each elementos}}
-                        <hr/>
+                        
                         <div class="row">
                             <div class="col-xs-100 col-sm-50 text-left">
                                 <label for="{{nombre}}">{{{etiqueta}}}</label>
@@ -264,15 +254,17 @@
                                 {{{unidades_de_medida}}}
                             </div>
                         </div>
+						<hr/>
                     {{/each}}
                 </script>
                 
                 <div id="tabla_resultados">
                     <div class="row">
-                        <div id='resultados_p1' class="col-xs-100"></div>
+                        <div id='resultados_p1' class="col-xs-100 padding_interior2 padding_top"></div>
+						
                     </div>
                     <div class="row">
-                        <div id='resultados_p2' class="col-xs-100"></div>
+                        <div id='resultados_p2' class="col-xs-100 padding_interior2"></div>
                     </div>
                 </div>
 
@@ -284,7 +276,7 @@
                 <div class="row">
                     <div id='btn_resultados' class="col-xs-100"></div>
                 </div>
-
+				
                 <script id="plantilla_btn_guardar_limpiar" type="text/x-handlebars-template">
                     <div class="row">
                         <div class="col-xs-100">
@@ -451,6 +443,33 @@
                 <div class="row">
                     <div id='btn_remover_bd' class="col-xs-100"></div>
                 </div>
+				
+				<div id="guardar_evento" class="row text-left" style="display:none;">
+					<div class="col-xs-100 col-sm-25 col-md-20 text-left">
+						<label class="control-label" for="fecha">Fecha:</label>
+					</div>
+					<div class="col-xs-100 col-sm-75 col-md-80 text-left">
+						<input type="date" class="datepicker" data-date-format="dd/mm/yyyy" id="fecha" name="fecha" placeholder="dd/mm/yyyy" size="30">
+					</div>
+										
+					<div class="col-xs-100 col-sm-25 col-md-20 text-left">
+						<label class="control-label" for="evento" >Evento:</label>
+					</div>
+					<div class="col-xs-100 col-sm-75 col-md-80 text-left">
+						<input type="text" id="evento" name="evento" placeholder="Nombre de la carrera"/>
+					</div>
+				</div>
+
+				<script type="text/javascript">
+					$("div#guardar_evento").dialog({
+						title:"Guardar", autoOpen:false, modal: true, width: 'auto', minWidth: '50%', maxWidth: '80%', fluid: true, show:"scale", hide:"explode",
+						buttons: {
+							"Ok": function() {guardar();}
+						},
+					});
+				</script>
+				
+				
             </section>
 
             <section id="acerca" class="columna-x">

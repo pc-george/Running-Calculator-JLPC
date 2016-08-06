@@ -226,6 +226,7 @@ textarea.LV_invalid_field:active {
 
 #menu_nav {
 	display: none;
+	width: auto;
 	margin: 0 auto;
 }
 #menu_toggle {
@@ -745,4 +746,6 @@ span.right {
 .menu_nav {
 	padding-top: 3px;
 	padding-bottom: 5px;
+	width: auto;
+	margin: 0 auto;
 }

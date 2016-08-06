@@ -226,6 +226,7 @@ textarea.LV_invalid_field:active {
 
 #menu_nav {
 	display: none;
+	margin: 0 auto;
 }
 #menu_toggle {
 	display: block;

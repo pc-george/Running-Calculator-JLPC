@@ -37,7 +37,7 @@ function alturaMenu() {
 var del_reg = false;
 //var v_width = "auto";
 
-var fecha = "", evento = "", unidad_medida_input = "", distancia_input = 0, distancia_km = 0, distancia_mt = 0, distancia_mi = 0, horas_input = 0, minutos_input = 0, segundos_input = 0, tiempo_min = 0, hrs_min_seg_input = "";
+var fecha = "", evento = "", unidad_medida_input = "", distancia_input = 0, distancia_km = 0, distancia_mt = 0, distancia_mi = 0, horas_input = 0, minutos_input = 0, segundos_input = 0.0, tiempo_min = 0, hrs_min_seg_input = "";
 
 var resultKm = [], result_ritmo_x_km = "", result_kph = 0, result_mps = 0, result_ritmo_pista = "", result_ritmo_min_double = 0.0, result_ritmo_pista100 = "", resultMi = [], result_ritmo_x_milla = "", result_mph = 0;
 
@@ -55,7 +55,7 @@ function inicializar1() {
     distancia_mi = 0;
     horas_input = 0;
     minutos_input = 0;
-    segundos_input = 0;
+    segundos_input = 0.0;
     tiempo_min = 0;
     hrs_min_seg_input = "";
 }
@@ -232,14 +232,12 @@ window.onload = function () {
     // Validación de campos
     var fecha_lv, distancia_lv, hrs_lv, min_lv, sec_lv;
     
-    //fecha_lv = new LiveValidation('fecha');
-    //fecha_lv.add(Validate.Presence);
+    fecha_lv = new LiveValidation('fecha');
+    fecha_lv.add(Validate.Presence);
 	
-	/*
     distancia_lv = new LiveValidation('distancia');
     distancia_lv.add(Validate.Presence);
     distancia_lv.add(Validate.Numericality, {minimum: 0});
-    */
 	
     hrs_lv = new LiveValidation('hrs');
     hrs_lv.add(Validate.Numericality, {minimum: 0, onlyInteger: true});
@@ -248,7 +246,7 @@ window.onload = function () {
     min_lv.add(Validate.Numericality, {minimum: 0, maximum: 59, onlyInteger: true});
     
     sec_lv = new LiveValidation('sec');
-    sec_lv.add(Validate.Numericality, {minimum: 0, maximum: 59});
+    sec_lv.add(Validate.Numericality, {minimum: 0.00, maximum: 59.99});
 };
 
 
@@ -445,11 +443,11 @@ function separarNumeroEnteroDecimal(param_numero) {
 function separar_hhmmss(param_hhmmss) {
 	var arr = param_hhmmss.toString().split(":");
 	
-	var horas = 0, minutos = 0, segundos = 0;
+	var horas = 0, minutos = 0, segundos = 0.0;
 	
 	horas = parseInt(arr[0]);
 	minutos = parseInt(arr[1]);
-	segundos = parseInt(arr[2]);
+	segundos = parseFloat(arr[2]);
 	
 	return [horas, minutos, segundos];
 }
@@ -462,7 +460,7 @@ function decimal_a_hhmmss(param_ritmo_double) {
     
     horas = 0;
     minutos = parseFloat(param_ritmo_double);
-    segundos = 0;
+    segundos = 0.0;
     
     // Convertimos los minutos a Horas:minutos
     while (minutos >= 60) {
@@ -788,9 +786,17 @@ function calcular() {
         unidad_medida_input = $("#unidad").val().toLowerCase();
         horas_input = getNum(parseFloat($("#hrs").val()));
         minutos_input = getNum(parseFloat($("#min").val()));
-        segundos_input = getNum(parseFloat($("#sec").val()));
+		
+		
+		segundos_input = getNum(parseFloat($("#sec").val()));
+		var sec_arr = segundos_input.toString().split(".");
+		var sec_entero = sec_arr[0];
+		var sec_decimal = sec_arr[1];
+		if ((sec_decimal === undefined) || (sec_decimal == null)) {
+			sec_decimal = 0;
+		}
         
-        hrs_min_seg_input = obtener2digitosMenoresDe10(horas_input) + ":" + obtener2digitosMenoresDe10(minutos_input) + ":" + obtener2digitosMenoresDe10(segundos_input);
+        hrs_min_seg_input = obtener2digitosMenoresDe10(horas_input) + ":" + obtener2digitosMenoresDe10(minutos_input) + ":" + obtener2digitosMenoresDe10(sec_entero) + "." + obtener2digitosMenoresDe10(sec_decimal);
 
         // Conversión del tiempo ingresado a 'minutos'
         tiempo_min = (horas_input * 60) + (minutos_input) + (segundos_input / 60);
@@ -991,7 +997,7 @@ function verDB() {
 				db({___id:db_1reg.id}).update({ritmo_km_dec: db_1reg.ritmo_km_dec});
 			}
 			
-			var horas = 0, minutos = 0, segundos = 0;
+			var horas = 0, minutos = 0, segundos = 0.0;
 			if (db_1reg.hhmmss != "") {
 				var hh_mm_ss = separar_hhmmss(db_1reg.hhmmss);
 				horas = hh_mm_ss[0];
@@ -1220,12 +1226,14 @@ if (!('localStorage' in window && window['localStorage'] !== null)) {
 
 // Existe localStorage?
 var storage;
-try {
-    if (localStorage.getItem) {
-        storage = localStorage;
-    }
-} catch (e) {
-    storage = {};
+function onDeviceReady() {
+	try {
+		if (localStorage.getItem) {
+			storage = localStorage;
+		}
+	} catch (e) {
+		storage = {};
+	}
 }
 
 function abrirBD() {

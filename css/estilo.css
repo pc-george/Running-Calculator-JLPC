@@ -747,5 +747,6 @@ span.right {
 	padding-top: 3px;
 	padding-bottom: 5px;
 	width: auto;
-	margin: 0 auto;
+	/*margin: 0 auto;*/
+	margin: 100%;
 }

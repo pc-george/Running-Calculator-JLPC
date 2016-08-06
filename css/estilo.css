@@ -746,7 +746,7 @@ span.right {
 .menu_nav {
 	padding-top: 3px;
 	padding-bottom: 5px;
-	width: auto;
-	/*margin: 0 auto;*/
-	margin: 100%;
+	/*width: auto;*/
+	width: 100%;
+	margin: 0 auto;
 }

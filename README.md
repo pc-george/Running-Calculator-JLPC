@@ -26,7 +26,7 @@ Aplicación para realizar cálculos relacionados con la velocidad, ritmo, distan
 
 ##URL WebApp (Demo):##
 Puede ver una simulación de la app en la siguiente dirección web: 
-#george-cracker.96.lt/calculadora/#
+#http://george-cracker.96.lt/calculadora#
 
 ##Descarga del APK para Android:##
 https://github.com/pc-george/Running-Calculator-JLPC/blob/master/RunningCalculatorJLPC.apk

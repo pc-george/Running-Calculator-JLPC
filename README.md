@@ -24,10 +24,17 @@ Aplicación para realizar cálculos relacionados con la velocidad, ritmo, distan
 * Diseño adaptativo a todos los tamaños y resoluciones de pantalla.
 * Soporte para los dispositivos móviles más recientes con Sistema Operativo Android 4.x
 
+##URL WebApp (Demo):##
+Puede ver una simulación de la app en la siguiente dirección web: 
+#george-cracker.96.lt/calculadora/#
+
+##Descarga del APK para Android:##
+https://github.com/pc-george/Running-Calculator-JLPC/blob/master/RunningCalculatorJLPC.apk
+
 Hecho por un corredor para los corredores.
 
 #Autor:#
 Jorge Luis Pérez Canto.
 Guatemala, C.A.
 
-Copyright © 2015. Todos los derechos reservados.
+Copyright © 2014-2016. Todos los derechos reservados.

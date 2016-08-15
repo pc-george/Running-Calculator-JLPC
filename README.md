@@ -29,8 +29,7 @@ Puede ver una simulación de la app en la siguiente dirección web:
 #http://george-cracker.96.lt/calculadora#
 
 ##Descarga del APK para Android:##
-https://github.com/pc-george/Running-Calculator-JLPC/blob/master/RunningCalculatorJLPC.apk?raw=true
-
+http://george-cracker.96.lt/calculadora/RunningCalculatorJLPC.apk
 Hecho por un corredor para los corredores.
 
 #Autor:#

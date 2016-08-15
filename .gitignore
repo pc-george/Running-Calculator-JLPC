@@ -1,0 +1,9 @@
+compiled/
+*.apk
+*.keystore
+platforms-copy/
+Herramientas/
+otros/
+pages/
+*.txt
+README.md

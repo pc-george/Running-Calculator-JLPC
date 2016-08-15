@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Desactivar la detección automática de números de teléfono -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Desactivar la detección automática de direcciones postales -->
+    <meta name="format-detection" content="address=no">
+
+    <!-- Esto deshabilita el resaltado de vínculos al pulsarlos, tanto en IE11, IE10 y Windows Phone. -->
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src filesystem * 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; frame-src 'self' *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="description" content="Race Speed Calculator">
+    <meta name="keywords" content="George, Running, Calculator">
+    <meta name="author" content="Jorge Luis Pérez Canto">
+    <meta name="designer" content="Jorge Luis Pérez Canto"/>
+    <meta name="copyright" content="© 2014 Jorge Luis Pérez Canto"/>
+    <meta name="contact" content="george.jlpc@gmail.com">
+    <meta name="date" content="2014-12-01@01:00:00 TMZ"/>
+    <meta http-equiv="last-modified" content="2016-08-14@23:59:00 TMZ"/>
+    <meta name="application-name" content="Running Calc -JLPC-">
+    <meta property="og:title" content="Running Calc -JLPC-"/>
+    
+    <title>Running Calc -JLPC-</title>
+	
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Icon made by Freepik from www.flaticon.com -->
+
+    
+    <!-- CSS Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS jAlert -->
+	<link href="./css/jquery.alerts.css" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- jQuery (necessary for JavaScript plugins) -->
+	<script src="./js/plugins/jquery.js"></script>
+    <script src="./js/plugins/jquery-migrate-1.2.1.js"></script>
+
+    <!-- Bootstrap. Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./js/plugins/bootstrap.min.js"></script>
+    
+    <!-- Live Validation -->
+    <script src="./js/plugins/livevalidation_jlpc.js"></script>
+    
+    <!-- Taffy DB -->
+    <script src="./js/plugins/taffy.js"></script>
+    
+    <!-- JS Handlebars -->
+    <script src="./js/plugins/handlebars-v2.0.0.js"></script>
+    <script src="./js/plugins/helpers.js"></script>
+
+    <!-- JS jAlert -->
+    <script type="text/javascript" src="./js/plugins/jquery.alerts.js"></script>  
+    <script type="text/javascript" src="./js/plugins/jquery.ui.draggable.js"></script>
+
+    <!-- jQuery UI -->
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" media="screen" />
+	<script type="text/javascript" src="./js/plugins/jquery-ui.js"></script>
+    
+	<!-- CSS Estilos personalizados -->
+    <link rel="stylesheet" type="text/css" href="./css/estilo.css" media="screen" />
+	
+	<!-- JS Personal -->
+    <script src="./js/lib_jlpc/principal.js"></script>
+    <script src="./js/lib_jlpc/util_calc.js"></script>
+    <script src="./js/lib_jlpc/vista.js"></script>
+    <script src="./js/lib_jlpc/calc.js"></script>
+    <script src="./js/lib_jlpc/bd.js"></script>
+    <script src="./js/lib_jlpc/old.js"></script>
+    <script src="./js/lib_jlpc/plantillas_hb.js"></script>
+    <script src="./js/lib_jlpc/test.js"></script>
+    <script src="./js/lib_jlpc/validador_campos.js"></script>
+    
+    <script src="./js/lib_jlpc/ws.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+					
+    <header>
+    	<hgroup>
+            <h1 class="text-center">Running Calc -JLPC-</h1>
+        </hgroup>
+    </header>
+
+    <nav>
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-xs-90  col-xs-offset-5  col-xs-margen-dcha-5 
+                    col-sm-70    col-sm-offset-15   col-sm-margen-dcha-15  
+					col-md-64    col-md-offset-18   col-md-margen-dcha-18 columna-x
+					col-lg-46    col-lg-offset-27   col-lg-margen-dcha-27" id="fijo">
+
+                    <script src="./js/inc_pages/menu.js"></script>
+                </div>
+                
+            </div>
+        </div>
+    </nav>
+    
+
+    <section id="contenido" class="columna-x">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-xs-90  col-xs-offset-5  col-xs-margen-dcha-5 
+                    col-sm-70    col-sm-offset-15   col-sm-margen-dcha-15  
+                    col-md-64    col-md-offset-18   col-md-margen-dcha-18 columna-x
+					col-lg-46    col-lg-offset-27   col-lg-margen-dcha-27">
+
+                    <section id="entrada_de_datos">
+                        <script src="./js/inc_pages/input.js"></script>
+                    </section>
+                    
+                    <section id="resultados">
+                        <script src="./js/inc_pages/resultados.js"></script>
+                    </section>
+                    
+                    <section id="errores">
+                        <script src="./js/inc_pages/errores.js"></script>
+                    </section>
+
+                    <div id="espacio" class="espacio">
+                    </div>
+
+                    <section id="registros" style="display: none;">
+                        <script src="./js/inc_pages/registros.js"></script>
+                    </section>
+                    
+                    <section id="acerca" class="columna-x" style="display: none;">
+                        <script src="./js/inc_pages/acerca_de.js"></script>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-100 col-sm-50 footer1">
+                    <span id="copyright_footer">
+                        Copyright &copy; 2014 - 
+                    </span>
+                    <script type="text/javascript">
+                        document.write(getAnio());
+                    </script>
+                    <span>Jorge P&eacute;rez</span>      
+                </div>
+                <div class="col-xs-100 col-sm-50 footer2 hidden-xs">
+                    <span>Todos los derechos reservados.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+</body>
+</html>

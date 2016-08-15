@@ -1,22 +1,77 @@
+@font-face {
+   	font-family: 'Titillium';
+   	font-style: normal;
+   	font-weight: normal;
+   	src: url("../fonts/Titillium/Titillium-Regular.otf");
+}
+@font-face {
+   	font-family: "Century Gothic";
+   	font-style: normal;
+   	font-weight: normal;
+   	src: url("../fonts/century-gothic/Century Gothic.ttf");
+}
+
 * {
 	margin:0; padding:0;
 }
-
 html {
+	font-family: "Century Gothic", "Titillium", sans-serif, serif;
+	/*font-size: medium;*/
 	width:100%;
 	height:100%;
 }
 body {
+	font-family: "Century Gothic", "Titillium", sans-serif, serif;
+	/*font-size: medium;*/
+	font-size: 15px;
 	width:100%;
 	height:97%;
 }
+label {
+	font-size: 14px;
+}
+/*
+#wrapper {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+*/
+p {
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 16px;
+	margin-left: 15px;
+	margin-right: 15px;
+	padding-top: 50px;
+}
+
+h2 {
+	font-size: 16px;
+	margin-left: 15px;
+	margin-right: 15px;
+	padding-top: 0;
+	margin-top: 0;
+}
+
 #contenido_pr {
 	/*width:100%; */
 	height:100%;
 	overflow: auto;
 } 
 #fijo { 
-	position:inherit;
+	/*position:inherit;*/
+	position: fixed;
 	z-index: 99;
 	left:0;
 	top: 0;
@@ -39,6 +94,8 @@ body {
 	top: 0;
 	left: 0;
 }
+
+
 
 body {
 	
@@ -181,7 +238,7 @@ textarea.LV_invalid_field:active {
 	display: inline-block;
 	padding: 0px;
 	margin-bottom: 0;
-	font-size: 14px;
+	/*font-size: 14px;*/
 	font-weight: normal;
 	line-height: 1.42857143;
 	text-align: center;
@@ -232,23 +289,6 @@ textarea.LV_invalid_field:active {
 #menu_toggle {
 	display: block;
 }
-#fijo {
-	position: fixed;
-}
-h1 {
-	font-weight: bold;
-	font-size: 18px;
-	margin-left: 15px;
-	margin-right: 15px;
-	padding-top: 50px;
-}
-h2 {
-	font-size: 18px;
-	margin-left: 15px;
-	margin-right: 15px;
-	padding-top: 0;
-	margin-top: 0;
-}
 
 @media (min-width: 481px) {
 	#menu_nav {
@@ -259,6 +299,7 @@ h2 {
 	}
 	#fijo {
 		position: relative;
+		/*position: fixed;*/
 	}
 	h1 {
 		padding-top: 0px;
@@ -693,10 +734,10 @@ footer {
 		text-align: center;
 	}
 	.padding_acercaDe {
-		padding-top: 50px;
-		padding-bottom: 50px;
-		padding-left: 100px;
-		padding-right: 100px;
+		padding-top: 35px;
+		padding-bottom: 35px;
+		padding-left: 70px;
+		padding-right: 70px;
 	}
 }
 
@@ -746,7 +787,19 @@ span.right {
 .menu_nav {
 	padding-top: 3px;
 	padding-bottom: 5px;
-	/*width: auto;*/
-	width: 100%;
+	width: auto;
+	/*width: 100%;*/
 	margin: 0 auto;
+}
+
+.dropdown-menu {
+	font-size: medium;
+}
+
+.btn-lg {
+	font-size: medium;
+}
+
+.no-close .ui-dialog-titlebar-close {
+	display: none 
 }

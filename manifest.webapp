@@ -1,0 +1,22 @@
+{
+	"name": "Running Calc",
+	"description": "Race Speed Calculator",
+	"launch_path": "/index.html",
+	"icons": {
+		"16": "./favicon/runer-silhouette-16.png",
+		"32": "./favicon/runer-silhouette-32.png",
+		"48": "./favicon/runer-silhouette-48.png",
+		"60": "./favicon/runer-silhouette-60.png",
+		"64": "./favicon/runer-silhouette-64.png",
+		"128": "./favicon/runer-silhouette-128.png",
+		"512": "./favicon/runer-silhouette-512.png"
+	},
+	"developer": {
+		"name": "Jorge Luis Pérez Canto",
+		"url": "http://www.linkedin.com/in/jorge-luis-perez-canto"
+	},
+	"default_locale": "es",
+	"chrome": {
+		"navigation": true
+	}
+}

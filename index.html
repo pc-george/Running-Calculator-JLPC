@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" manifest="offline.manifest">
 <head>
     <meta charset="UTF-8">
 
@@ -73,36 +73,35 @@
     <link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" media="screen" />
     <script type="text/javascript" src="./js/plugins/jquery-ui.js"></script>
 
-    <script src="./js/lib_jlpc/detectar_dispositivo_movil.js"></script>
+    <script src="./js/libs_jlpc/detectar_dispositivo_movil.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            setTimeout(function() {
+                device.any_mobile();
+            }, 1000);
+        });
+    </script>
     
 </head>
 <body>
-    <div class="app">
+    <div class="app" id="intro">
         <br>
-        <h1>Running Calc<br>-JLPC-</h1>
+        <h1>Running Calc<br><br>JLPC</h1>
         <br>
         <div id="deviceready" class="blink">
             <p class="event listening">Cargando...</p>
             <p class="event received">Device is Ready</p>
         </div>
+    </div>    
+    <div id="wrapper">
+        <div id="noMovil" style="display: none;">
+            <p><b>No est&aacute; navegando desde un dispositivo m&oacute;vil, haga clic en "OK" para que se ejecute una simulaci&oacute;n</b></p>
+            <small>
+                <p><i><u>Detalle:</u></i></p>
+                <p id="userAgent"></p>
+            </small>
+        </div>
     </div>
-    
-    <script type="text/javascript" src="cordova.js"></script> 
-    <!-- 
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">app.initialize();</script>
-    -->
-    
-    <div id="noMovil" style="display: none;">
-        <p><b>No est&aacute; navegando desde un dispositivo m&oacute;vil, haga clic en "OK" para que se ejecute una simulaci&oacute;n</b></p>
-        <small>
-            <p><i><u>Detalle:</i></u></p>
-            <p id="userAgent"></p>
-        </small>
-    </div>
-
-    <script type="text/javascript">
-        device.any_mobile();
-    </script>
 </body>
 </html>

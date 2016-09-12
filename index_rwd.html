@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" manifest="offline.manifest">
 <head>
     <meta charset="UTF-8">
 
@@ -61,6 +61,7 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Icon made by Freepik from www.flaticon.com -->
 
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
     
     <!-- CSS Bootstrap -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -94,42 +95,52 @@
 
     <!-- JS jAlert -->
     <script type="text/javascript" src="./js/plugins/jquery.alerts.js"></script>  
-    <script type="text/javascript" src="./js/plugins/jquery.ui.draggable.js"></script>
+    <!-- <script type="text/javascript" src="./js/plugins/jquery.ui.draggable.js"></script> -->
 
     <!-- jQuery UI -->
 	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" media="screen" />
 	<script type="text/javascript" src="./js/plugins/jquery-ui.js"></script>
     
 	<!-- CSS Estilos personalizados -->
+    <!-- <link rel="stylesheet" type="text/css" href="./css/estilo - copia.css" media="screen" /> -->
     <link rel="stylesheet" type="text/css" href="./css/estilo.css" media="screen" />
 	
 	<!-- JS Personal -->
-    <script src="./js/lib_jlpc/principal.js"></script>
-    <script src="./js/lib_jlpc/util_calc.js"></script>
-    <script src="./js/lib_jlpc/vista.js"></script>
-    <script src="./js/lib_jlpc/calc.js"></script>
-    <script src="./js/lib_jlpc/bd.js"></script>
-    <script src="./js/lib_jlpc/old.js"></script>
-    <script src="./js/lib_jlpc/plantillas_hb.js"></script>
-    <script src="./js/lib_jlpc/test.js"></script>
-    <script src="./js/lib_jlpc/validador_campos.js"></script>
+    <script src="./js/libs_jlpc/principal.js"></script>
+    <script src="./js/libs_jlpc/util_calc.js"></script>
+    <script src="./js/libs_jlpc/vista.js"></script>
+    <script src="./js/libs_jlpc/calc.js"></script>
+    <script src="./js/libs_jlpc/bd.js"></script>
+    <script src="./js/libs_jlpc/old.js"></script>
+    <script src="./js/libs_jlpc/plantillas_hb.js"></script>
+    <script src="./js/libs_jlpc/validador_campos.js"></script>
     
-    <script src="./js/lib_jlpc/ws.js"></script>
+    <!-- <script src="./js/libs_jlpc/ws.js"></script> -->
 </head>
 <body>
-	<div id="wrapper">
-					
-    <header>
+
+    <div class="app" id="intro">
+        <h1>Running Calc<br><br>JLPC</h1>
+        <br>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Cargando...</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+    </div>
+
+	<div id="wrapper" style="display: none;">
+    <br/><br/>
+<!--     <header>
     	<hgroup>
-            <h1 class="text-center">Running Calc -JLPC-</h1>
+            <h1 class="text-center">Running Calc <span>-JLPC-</span></h1>
         </hgroup>
-    </header>
+    </header> -->
 
     <nav>
         <div class="container-fluid">
             <div class="row text-center">
                 <div class="col-xs-90  col-xs-offset-5  col-xs-margen-dcha-5 
-                    col-sm-70    col-sm-offset-15   col-sm-margen-dcha-15  
+                    col-sm-80    col-sm-offset-10   col-sm-margen-dcha-10 
 					col-md-64    col-md-offset-18   col-md-margen-dcha-18 columna-x
 					col-lg-46    col-lg-offset-27   col-lg-margen-dcha-27" id="fijo">
 
@@ -145,7 +156,7 @@
         <div class="container-fluid">
             <div class="row text-center">
                 <div class="col-xs-90  col-xs-offset-5  col-xs-margen-dcha-5 
-                    col-sm-70    col-sm-offset-15   col-sm-margen-dcha-15  
+                    col-sm-80    col-sm-offset-10   col-sm-margen-dcha-10 
                     col-md-64    col-md-offset-18   col-md-margen-dcha-18 columna-x
 					col-lg-46    col-lg-offset-27   col-lg-margen-dcha-27">
 
@@ -156,10 +167,10 @@
                     <section id="resultados">
                         <script src="./js/inc_pages/resultados.js"></script>
                     </section>
-                    
-                    <section id="errores">
+
+<!--                     <section id="errores">
                         <script src="./js/inc_pages/errores.js"></script>
-                    </section>
+                    </section> -->
 
                     <div id="espacio" class="espacio">
                     </div>
@@ -181,16 +192,16 @@
     <footer id="footer">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-100 col-sm-50 footer1">
+                <div class="col-xs-100 col-sm-53 footer1">
                     <span id="copyright_footer">
-                        Copyright &copy; 2014 - 
+                        Copyright &copy; 
                     </span>
                     <script type="text/javascript">
                         document.write(getAnio());
                     </script>
                     <span>Jorge P&eacute;rez</span>      
                 </div>
-                <div class="col-xs-100 col-sm-50 footer2 hidden-xs">
+                <div class="col-xs-100 col-sm-47 footer2 hidden-xs">
                     <span>Todos los derechos reservados.</span>
                 </div>
             </div>

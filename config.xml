@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.george_cracker.running_calc_jlpc" version="1.3.0"
+<widget id="com.george_cracker.running_calc_jlpc" version="1.3.55"
   xmlns="http://www.w3.org/ns/widgets"
   xmlns:cdv="http://cordova.apache.org/ns/1.0"
   xmlns:gap="http://phonegap.com/ns/1.0">
@@ -13,6 +13,7 @@
   <description>Race Speed Calculator</description>
   <author email="george.jlpc@gmail.com" href="https://www.linkedin.com/in/jorge-luis-perez-canto">George Cracker</author>
   <content src="index.html"/>
+  <preference name="phonegap-version" value="cli-6.3.0" />
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="9"/>
   <preference name="Fullscreen" value="true" />
@@ -27,26 +28,18 @@
   <preference name="LoadingDialog" value="My Title, My Message"/>
   <preference name="ShowTitle" value="true"/>
   <preference name="AndroidLaunchMode" value="singleInstance"/>
-  <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1"/>
-  <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1"/>
-  <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0"/>
-  <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2"/>
-  <plugin name="cordova-plugin-contacts" source="npm" spec="~2.0.1"/>
-  <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1"/>
-  <plugin name="cordova-plugin-device-motion" source="npm" spec="~1.2.0"/>
-  <plugin name="cordova-plugin-device-orientation" source="npm" spec="~1.0.2"/>
-  <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0"/>
-  <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1"/>
-  <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0"/>
-  <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0"/>
-  <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3"/>
-  <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0"/>
-  <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0"/>
-  <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0"/>
-  <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1"/>
-  <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2"/>
-  <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0"/>
-  <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
+  <plugin name="cordova-plugin-console" spec="1.0.3" />
+  <!-- <plugin name="cordova-plugin-device" spec="1.1.2" /> -->
+  <plugin name="cordova-plugin-dialogs" spec="1.2.1" />
+  <!-- <plugin name="cordova-plugin-file" spec="4.1.1" /> -->
+  <!-- <plugin name="cordova-plugin-file-transfer" spec="1.5.1" /> -->
+  <!-- <plugin name="cordova-plugin-geolocation" spec="2.1.0" /> -->
+  <!-- <plugin name="cordova-plugin-globalization" spec="1.0.3" /> -->
+  <!-- <plugin name="cordova-plugin-network-information" spec="1.2.1" /> -->
+  <plugin name="cordova-plugin-statusbar" spec="2.1.3" />
+  <plugin name="cordova-plugin-vibration" spec="2.1.1" />
+  <!-- <plugin name="cordova-plugin-whitelist" spec="1.2.2" /> -->
+  <!--   <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1"/> -->
   <icon src="icon.png"/>
   <platform name="android">
     <icon src="res/icon/android/drawable-ldpi-icon.png" density="ldpi"/>
@@ -55,6 +48,7 @@
     <icon src="res/icon/android/drawable-xhdpi-icon.png" density="xhdpi"/>
     <icon src="res/icon/android/drawable-xxhdpi-icon.png" density="xxhdpi"/>
     <icon src="res/icon/android/drawable-xxxhdpi-icon.png" density="xxxhdpi"/>
+	  <!--
     <splash src="res/screen/android/drawable-land-ldpi-screen.png" density="land-ldpi"/>
     <splash src="res/screen/android/drawable-land-mdpi-screen.png" density="land-mdpi"/>
     <splash src="res/screen/android/drawable-land-hdpi-screen.png" density="land-hdpi"/>
@@ -67,6 +61,7 @@
     <splash src="res/screen/android/drawable-port-xhdpi-screen.png" density="port-xhdpi"/>
     <splash src="res/screen/android/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="res/screen/android/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
+	-->
   </platform>
   <platform name="ios">
     <icon src="res/icon/ios/icon.png" platform="ios" width="57" height="57"/>
@@ -85,6 +80,7 @@
     <icon src="res/icon/ios/icon-small.png" platform="ios" width="29" height="29"/>
     <icon src="res/icon/ios/icon-small@2x.png" platform="ios" width="58" height="58"/>
     <icon src="res/icon/ios/icon-small@3x.png" platform="ios" width="87" height="87"/>
+	  <!--
     <splash src="res/screen/ios/Default-568h@2x~iphone.png" platform="ios" width="640" height="1136"/>
     <splash src="res/screen/ios/Default-667h.png" platform="ios" width="750" height="1334"/>
     <splash src="res/screen/ios/Default-736h.png" platform="ios" width="1242" height="2208"/>
@@ -95,17 +91,22 @@
     <splash src="res/screen/ios/Default-Portrait~ipad.png" platform="ios" width="768" height="1024"/>
     <splash src="res/screen/ios/Default@2x~iphone.png" platform="ios" width="640" height="960"/>
     <splash src="res/screen/ios/Default~iphone.png" platform="ios" width="320" height="480"/>
+	-->
   </platform>
   <platform name="wp8">
     <icon src="res/icon/wp8/ApplicationIcon.png" platform="wp8" width="99" height="99"/>
     <icon src="res/icon/wp8/Background.png" platform="wp8" width="159" height="159"/>
+	  <!--
     <splash src="res/screen/wp8/screen-portrait.jpg" platform="wp8" width="768" height="1280"/>
+	  -->
   </platform>
   <platform name="windows">
     <icon src="res/icon/windows/Square150x150Logo.scale-100.png" platform="windows" width="150" height="150"/>
     <icon src="res/icon/windows/Square30x30Logo.scale-100.png" platform="windows" width="30" height="30"/>
     <icon src="res/icon/windows/StoreLogo.scale-100.png" platform="windows" width="50" height="50"/>
+	  <!--
     <splash src="res/screen/windows/SplashScreen.scale-100.png" platform="windows" width="620" height="300"/>
+	  -->
     <icon src="res/icon/windows/StoreLogo.scale-240.png" platform="windows" width="120" height="120"/>
     <icon src="res/icon/windows/Square44x44Logo.scale-100.png" platform="windows" width="44" height="44"/>
     <icon src="res/icon/windows/Square44x44Logo.scale-240.png" platform="windows" width="106" height="106"/>
@@ -116,17 +117,20 @@
     <icon src="res/icon/windows/Square310x310Logo.scale-100.png" platform="windows" width="310" height="310"/>
     <icon src="res/icon/windows/Wide310x150Logo.scale-100.png" platform="windows" width="310" height="150"/>
     <icon src="res/icon/windows/Wide310x150Logo.scale-240.png" platform="windows" width="744" height="360"/>
+	  <!--
     <splash src="res/screen/windows/SplashScreenPhone.scale-240.png" platform="windows" width="1152" height="1920"/>
+	-->
   </platform>
   <access origin="*"/>
+  <allow-navigation href="*" />
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
-  <allow-intent href="file://*/*" />
-  <allow-intent href="*" />
+  <allow-intent href="file://*/*"/>
+  <allow-intent href="*"/>
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>

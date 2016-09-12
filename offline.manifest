@@ -1,0 +1,32 @@
+CACHE MANIFEST
+
+index.html
+index_emulador.html
+index_rwd.html
+favicon.ico
+icon.png
+js/plugins/bootstrap.min.js
+js/plugins/jquery.alerts.js
+js/plugins/jquery-migrate-1.2.1.js
+js/plugins/handlebars-v2.0.0.js
+js/plugins/jquery.js
+js/plugins/jquery-ui.js
+js/plugins/taffy.js
+js/plugins/helpers.js
+js/plugins/jquery.ui.draggable.js
+js/plugins/livevalidation_jlpc.js
+css/bootstrap.min.css
+css/jquery-ui.css
+css/index.css
+css/jquery.alerts.css
+img/phone.png
+img/logo.png
+fonts/glyphicons-halflings-regular.eot
+fonts/glyphicons-halflings-regular.svg
+fonts/glyphicons-halflings-regular.ttf
+fonts/glyphicons-halflings-regular.woff
+fonts/Titillium/Titillium-Regular.otf
+"fonts/century-gothic/Century Gothic.ttf"
+img/
+css/images/
+favicon/*.png

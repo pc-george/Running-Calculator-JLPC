@@ -26,7 +26,10 @@ Aplicación para realizar cálculos relacionados con la velocidad, ritmo, distan
 
 ##URL WebApp (Demo):##
 Puede ver una simulación de la app en la siguiente dirección web: 
-#http://george-cracker.96.lt/calculadora#
+#http://george-cracker.96.lt/calculadora##
+
+##Descargar Apk:##
+##https://build.phonegap.com/apps/1249910/share##
 
 
 Hecho por un corredor para los corredores.

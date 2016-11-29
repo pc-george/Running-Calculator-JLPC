@@ -31,6 +31,9 @@ Puede ver una simulación de la app en la siguiente dirección web:
 ##Descargar Apk:##
 ##https://build.phonegap.com/apps/1249910/share##
 
+##Manual de usuario:##
+#https://github.com/pc-george/Running-Calculator-JLPC/blob/master/Manual%20-%20Running%20Calc%20JLPC.pdf#
+
 
 Hecho por un corredor para los corredores.
 

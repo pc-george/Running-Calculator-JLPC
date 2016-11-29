@@ -1,0 +1,76 @@
+<script id="plantilla-resultados" type="text/x-handlebars-template">
+    {{!-- 
+        <p class="text-center" id="txtResult">
+            <strong>Resutados</strong>
+        </p> 
+    --}}
+    
+    {{#each elementos}}
+        <div class="row">
+            <div class="col-xs-100 col-sm-50 text-left">
+                <label for="{{nombre}}">{{{etiqueta}}}</label>
+            </div>
+            <div class="col-xs-100 col-sm-50 text-center">
+                <input type="text" name = "{{nombre}}" id = "{{nombre}}" readonly="readonly" class = "result" value="{{velocidad}}">
+                {{{unidades_de_medida}}}
+            </div>
+         </div>
+        <hr/>
+    {{/each}}
+</script>
+
+<div id="tabla_resultados">
+    <div class="row">
+        <div id='resultados_p1' class="col-xs-100 padding_interior2 padding_top"></div>
+    </div>
+    <div class="row">
+        <div id='resultados_p2' class="col-xs-100 padding_interior2"></div>
+    </div>
+</div>
+
+<script id="plantilla_btn_resultados" type="text/x-handlebars-template">
+    <button type="button" class="btn btn-default btn-default btn-block azul" onclick="{{funcion}}">
+        {{{titulo}}}
+    </button>
+</script>
+<div class="row">
+    <div id='btn_resultados' class="col-xs-100"></div>
+</div>
+
+<script id="plantilla_btn_guardar_limpiar" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-xs-100">
+            <div class="btn-group btn-group-justified">
+                <button type="button" id="btn_guardar" class="btn {{btn_guardar}} text-sombra" onclick="{{funcion_guardar}}">
+                    <img class="img-btn" alt="{{etiqueta_guardar}}" src="{{icono_guardar}}"/>
+                    <span>{{etiqueta_guardar}}</span>
+                </button>
+                <button type="button" id="btn_limpiar" class="btn {{btn_limpiar}} text-sombra" onclick="{{funcion_limpiar}}">
+                    <img class="img-btn" alt="{{etiqueta_limpiar}}" src="{{icono_limpiar}}"/>
+                    <span>{{etiqueta_limpiar}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</script>
+<div class="row">
+    <div id='btn_guardar_limpiar' class="col-xs-100"></div>
+</div>
+
+<script id="plantilla_error" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-xs-100 text-center">
+            <p>
+                <strong>{{{msj_error}}}</strong>
+            </p>
+            <p>{{{info_extra}}}</p>
+        </div>
+    </div>
+</script>
+<div id="error" class="alert alert-danger" style="display: none;"></div>
+<div id="save_ok" class="alert alert-success" style="display: none;">
+    <strong>OK!</strong> Datos almacenados exitosamente.
+</div>
+<div id="save_error" class="alert alert-danger" style="display: none;">
+    <strong>&iexcl;Error!</strong> Los datos NO fueron almacenados.
+</div>

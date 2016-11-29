@@ -1,0 +1,17 @@
+<script id="plantilla_error" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-xs-100 text-center">
+            <p>
+                <strong>{{{msj_error}}}</strong>
+            </p>
+            <p>{{{info_extra}}}</p>
+        </div>
+    </div>
+</script>
+<div id="error" class="alert alert-danger" style="display: none;"></div>
+<div id="save_ok" class="alert alert-success" style="display: none;">
+    <strong>OK!</strong> Datos almacenados exitosamente.
+</div>
+<div id="save_error" class="alert alert-danger" style="display: none;">
+    <strong>&iexcl;Error!</strong> Los datos NO fueron almacenados.
+</div>

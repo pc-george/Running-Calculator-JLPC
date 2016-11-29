@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-xs-100">
+        <div class="tt">
+            <h4>Instrucciones:</h4>
+            <p>Ingresa los datos requeridos, luego presiona el bot&oacute;n 'Calcular' para obtener la velocidad de carrera.</p>
+        </div>
+        <div class="row padding15x">
+            <div class="col-xs-100 tb padding-interior">
+                <form role="form" id="form">
+                    <div class="row text-left">
+                        <div class="col-xs-35 col-md-20 col-lg-18">
+                            <label for="unidad">Unidades:</label>
+                        </div>
+                        <div class="col-xs-65 col-md-30 col-lg-32 sin-padding-izq padding">
+                            <select name="unidad" id="unidad" required="required" class="form-control" title="Seleccione la unidad de medida.">
+                                <option value="m" selected>Metros</option>
+                                <option value="km">Kilometros</option>
+                                <option value="mi">Millas</option>
+                            </select>
+                        </div>
+                        <div class="clearfix visible-xxs visible-ss"></div>
+                        <div class="col-xs-35 col-md-20 col-lg-18">
+                            <label for="distancia">Distancia:</label>
+                        </div>
+                        <div class="col-xs-65 col-md-30 col-lg-32 sin-padding-izq padding">
+                            <input type="number" id="distancia" name="distancia" step="any" placeholder="0" min="0" required="required" title="Ingrese la distancia recorrida." class="numero_mediano form-control" autofocus />
+                        </div>
+                    </div>
+                    <HR></HR>
+                    <div class="row text-center">
+                        <div class="col-xs-31">
+                            <div class="row">
+                                <div class="col-xs-100 col-md-55 col-lg-50 text-l">
+                                    <label for="hrs">Horas</label>
+                                </div>
+                                <div class="col-xs-100 col-md-45 col-lg-50 sin-padding">
+                                    <input type="number" name="hrs" id="hrs" placeholder="0" min="0" class="numero_corto form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-32">
+                            <div class="row">
+                                <div class="col-xs-100 col-md-55 col-lg-50">
+                                    <label for="min">Minutos</label>
+                                </div>
+                                <div class="col-xs-100 col-md-45 col-lg-50 sin-padding">
+                                    <input type="number" name="min" id="min" placeholder="0" max="59" min="0" maxlength="2" oninput="maxLengthCheck(this)" class="numero_corto form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-37">
+                            <div class="row">
+                                <div class="col-xs-100 col-md-55 col-lg-50">
+                                    <label for="sec">Segundos</label>
+                                </div>
+                                <div class="col-xs-100 col-md-45 col-lg-50 sin-padding">
+                                    <input type="number" name="sec" id="sec" placeholder="0.0" maxlength="5" max="59.9" min="0.0" step="0.1" oninput="maxLengthCheck(this)" class="numero_corto form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-100">
+                <button type="button" id="btn_calcular" class="btn btn-default btn-primary btn-block" onclick="calcular();">
+                    <img class="img-btn" alt="Calcular" src="./img/32/1417013755_calculator-32.png" />
+                    <span> Calcular</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="logo_tmp">
+    <br>
+    <img src="./img/run.png" onclick="calcular();">
+</div>

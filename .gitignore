@@ -15,7 +15,6 @@ src\
 .pgbomit
 *.txt
 *.ffs_db
-*.apk
 *.keystore
 sync.ffs_db
 spec.html
